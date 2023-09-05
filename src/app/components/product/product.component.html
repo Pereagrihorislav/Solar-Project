@@ -1,0 +1,16 @@
+<article class="product-list__product-card product-card">
+    <label for="favorite-checkbox" class="custom-favorite-button">
+        <input type="checkbox" name="favorite-checkbox" class="product-card__add-to-favorites">
+    </label>
+    <a href="#" class="product-card__body">
+        <div class="product-card__image _ibg">
+            <img [src]="product.image" alt="product photo">
+        </div>
+        <div class="product-card__description">
+            <h4 class="product-card__name">{{ product.name }}</h4>
+            <em class="product-card__price">{{ product.price }} ₽</em>
+            <span class="product-card__addres">{{ product.description }}</span>
+            <span class="product__card__time">{{ product.upc }}</span>
+        </div>
+    </a>
+</article>
