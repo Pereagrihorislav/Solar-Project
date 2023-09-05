@@ -1,0 +1,18 @@
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product-list >*{
+    margin-bottom: 32px;
+}
+
+.product-list >*:not(:nth-child(5n)) {
+    margin-right: 24px;
+}
+
+
+.product-list__product-card {
+    position:relative;
+}
