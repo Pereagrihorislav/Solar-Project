@@ -1,0 +1,14 @@
+app-product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+app-product-list >*{
+    margin-bottom: 32px;
+    position:relative;
+}
+
+app-product-list >*:not(:nth-child(5n)) {
+    margin-right: 24px;
+}
