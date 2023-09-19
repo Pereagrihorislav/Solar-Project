@@ -9,16 +9,7 @@ import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.com
 const routes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: '',
-        component: ProductListComponent,
-      },
-      {
-        path: ':id',
-        component: ProductComponent,
-      },
-    ]
+    component: ProductListComponent,
   },
   {
     path: 'search',
