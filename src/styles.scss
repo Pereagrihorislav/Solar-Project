@@ -43,6 +43,11 @@ body {
 	font-family: "Montserrat", sans-serif;
 }
 
+.page {
+	flex: 1 1 auto;
+	position: relative;
+    padding-bottom: 48px;
+}
 /*---------------- reset all stiles ----------------------*/
 html,
 body,

@@ -7,6 +7,7 @@ import { AuthorizationPopupComponent } from './shared/standalone-components/auth
 import { RegistrationPopupComponent } from './shared/standalone-components/registration-popup/registration-popup.component';
 import { ContactsPopupComponent } from './shared/standalone-components/contacts-popup/contacts-popup.component';
 import { AppRoutingModule } from './app-routing.module';
+import { LayoutModule } from './layout-module/layout.module';
 
 
 
@@ -18,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    LayoutModule,
     AppRoutingModule
   ],
   providers: [],
