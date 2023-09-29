@@ -1,0 +1,29 @@
+.categories-button {
+    flex: 0 0 160px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    
+    &:hover {
+        border: 1px solid #7480ED;
+        transition: all 0.3s ease;
+    }
+    
+    &:active {
+        border: 1px solid #59D2BD;
+    }
+    
+    .categories-button__image {
+        height: 20px;
+        width: 20px;
+    }
+}
+
