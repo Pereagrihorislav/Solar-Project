@@ -29,7 +29,7 @@ const routes: Routes = [
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
-  bootstrapApplication(AppComponent, {
+ /* bootstrapApplication(AppComponent, {
     providers: [provideRouter(routes)],
-  }).catch((err) => console.error(err))
+  }).catch((err) => console.error(err))*/
 

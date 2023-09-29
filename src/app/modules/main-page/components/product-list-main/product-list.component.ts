@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../product/services/product.service';
-import { Daum } from '../product/product.interface';
+import { ProductsService } from '../../services/product.service';
+import { Product } from '../product/product.interface';
 
 @Component({
   selector: 'app-product-list',
@@ -9,13 +9,14 @@ import { Daum } from '../product/product.interface';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Daum[] = []
+  products: Array<Product> | undefined;
+
 
   constructor(private _productService: ProductsService) {}
 
   ngOnInit() {
-    this._productService.getProducts().subscribe(resp => {
-      this.products = resp.data
+    this._productService.getAllProducts().subscribe(resp => {
+      this.products = resp
     })
   }
 
