@@ -11,6 +11,8 @@ import { SearchFormComponent } from './components/layout/components/header/compo
 import { AddProductComponent } from './components/layout/components/header/components/header-menu/components/add-product/add-product.component';
 import { SignInComponent } from './components/layout/components/header/components/header-menu/components/sign-in/sign-in.component';
 import { FavoritesComponent } from './components/layout/components/header/components/header-menu/components/favorites/favorites.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -28,9 +30,11 @@ import { FavoritesComponent } from './components/layout/components/header/compon
     AddProductComponent,
     SignInComponent,
     FavoritesComponent,
+    
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
   ],
   exports: [
     LayoutComponent,
