@@ -1,0 +1,69 @@
+.sign-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 8px;
+    padding: 28px;
+    font-family: "Montserrat", sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+
+
+
+    .sign-form__header {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 28px;
+
+    }
+
+    .sign-form__input {
+        height: 36px;
+        width: 300px;
+        padding: 8px 12px;
+        margin-bottom: 14px;
+        font-size: 14px;
+        color: #64748B;
+        background-color: #ffffff;
+        border: 1px solid #CBD5E1;
+        border-radius: 4px;
+
+
+    }
+
+    .sign-form__button {
+        align-items: center;
+        
+        height: 36px;
+        width: fit-content;
+        padding: 8px 24px;
+        margin: 14px 0 28px 0;
+        font-size: 14px;
+        color: #ffffff;
+        background-color: #4C58C8;
+        border: none;
+        border-radius: 4px;
+    
+        &:hover {
+            background-color: #7480ED;
+            transition: all 0.3s ease;
+        }
+        
+        &:active {
+            background-color: #59D2BD;
+        }
+    }
+
+    .sign-form__switch {
+        font-size: 14px;
+
+        &:hover {
+            color: #59D2BD;
+            transition: all 0.3s ease;
+        }
+    }
+
+}

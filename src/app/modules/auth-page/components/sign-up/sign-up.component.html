@@ -1,0 +1,8 @@
+<form [formGroup]="signUpForm" class="sign-form" novalidate>
+    <h3 class="sign-form__header">Регистрация</h3>
+    <input class="sign-form__input" type="text" id="Login"  formControlName="login" placeholder="Логин">
+    <input class="sign-form__input" type="text" id="Name" formControlName="name" placeholder="Имя пользователя">
+    <input class="sign-form__input" type="text" id="Password" formControlName="password" placeholder="Пароль">
+    <button class="sign-form__button" (click)="signUp()">Зарегистрироваться</button>
+    <a routerLink="/auth/sign-in" class="sign-form__switch">Уже есть аккаунт? Войти</a>
+</form>

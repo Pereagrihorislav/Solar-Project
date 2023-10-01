@@ -29,6 +29,11 @@ const routes : Routes = [
     path: 'settings',
     loadChildren: () =>
       import('./modules/settings-page/settings-page.module').then((m) => m.SettingsPageModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth-page/auth-page.module').then((m) => m.AuthPageModule),
   }
 ];
 

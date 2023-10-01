@@ -12,8 +12,7 @@ import { AddProductComponent } from './components/layout/components/header/compo
 import { SignInComponent } from './components/layout/components/header/components/header-menu/components/sign-in/sign-in.component';
 import { FavoritesComponent } from './components/layout/components/header/components/header-menu/components/favorites/favorites.component';
 import { FormsModule } from '@angular/forms';
-
-
+import { LayoutRoutingModule } from './layout-routing.module';
 
 
 
@@ -35,6 +34,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    LayoutRoutingModule
   ],
   exports: [
     LayoutComponent,
