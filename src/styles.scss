@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .wrapper {
-	min-height: 100%;
+	min-height: 100vh;
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
@@ -44,8 +44,12 @@ body {
 }
 
 .page {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	flex: 1 1 auto;
 	position: relative;
+	padding-top: 36px;
     padding-bottom: 48px;
 }
 /*---------------- reset all stiles ----------------------*/
