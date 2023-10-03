@@ -13,27 +13,27 @@ const routes : Routes = [
   {
     path: 'main',
     loadChildren: () =>
-      import('./modules/main-page/main-page.module').then((m) => m.MainPageModule),
+      import('./pages/main-page/main-page.module').then((m) => m.MainPageModule),
   },
   {
     path: 'edit',
     loadChildren: () =>
-      import('./modules/edit-page/edit-page.module').then((m) => m.EditPageModule),
+      import('./pages/edit-page/edit-page.module').then((m) => m.EditPageModule),
   },
   {
     path: 'product/:id',
     loadChildren: () =>
-      import('./modules/product-page/product-page.module').then((m) => m.ProductPageModule),
+      import('./pages/product-page/product-page.module').then((m) => m.ProductPageModule),
   },
   {
     path: 'settings',
     loadChildren: () =>
-      import('./modules/settings-page/settings-page.module').then((m) => m.SettingsPageModule),
+      import('./pages/settings-page/settings-page.module').then((m) => m.SettingsPageModule),
   },
   {
     path: 'auth',
     loadChildren: () =>
-      import('./modules/auth-page/auth-page.module').then((m) => m.AuthPageModule),
+      import('./pages/auth-page/auth-page.module').then((m) => m.AuthPageModule),
   }
 ];
 
