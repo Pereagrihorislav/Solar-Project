@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .wrapper {
-	min-height: 100vh;
+	min-height: 100%;
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
@@ -29,7 +29,6 @@
     span {
         white-space: nowrap;
     }
-   
 }
 
 html,
@@ -202,7 +201,9 @@ a, a:hover, a:visited, a:active, a:focus{
 }
 
 
-input, input:focus{
+input, input:focus, 
+textarea, textarea:focus,
+select, select:focus {
 	outline: none;
 	outline-offset: none;
 }

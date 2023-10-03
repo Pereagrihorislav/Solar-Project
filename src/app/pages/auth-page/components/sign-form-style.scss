@@ -7,7 +7,7 @@
     width: fit-content;
     height: fit-content;
     border-radius: 8px;
-    padding: 28px;
+    padding: 32px;
     margin: auto;
     font-family: "Montserrat", sans-serif;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
@@ -17,7 +17,7 @@
     .sign-form__header {
         font-size: 24px;
         font-weight: 600;
-        margin-bottom: 28px;
+        margin-bottom: 24px;
 
     }
 
@@ -25,7 +25,7 @@
         height: 36px;
         width: 300px;
         padding: 8px 12px;
-        margin-bottom: 14px;
+        margin-top: 16px;
         font-size: 14px;
         color: #64748B;
         background-color: #ffffff;
@@ -39,7 +39,7 @@
         height: 36px;
         width: fit-content;
         padding: 8px 24px;
-        margin: 14px 0 28px 0;
+        margin: 16px 0 24px 0;
         font-size: 14px;
         color: #ffffff;
         background-color: #4C58C8;

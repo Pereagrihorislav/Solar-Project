@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
 
 const routes: Routes = [
-   
+  {
+    path: 'product',
+    component: EditFormComponent,
+  },
 ];
 
 
@@ -12,4 +15,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MainPageRoutingModule { }
+export class EditPageRoutingModule { }

@@ -1,1 +1,78 @@
-<p>edit-form works!</p>
+<form [formGroup]="editForm" class="product-edit-form" novalidate>
+    <h3 class="product-edit-form__header">Новое объявление</h3>
+
+    <div class="product-edit-form__category-selects category-selects _subform">
+        <p class="category-selects__subform-name subform-name">Выберите категорию<sup>*</sup></p>
+        <select  id="Category" class="category-selects__category _form-select" formControlName="category">
+            <option value="" disabled selected hidden>Нажмите, чтобы выбрать</option>
+            <option *ngFor="let category of getCategory()" [value]="category.name">{{category.name}}</option>
+        </select>
+        <div *ngIf="editForm.controls['category'].invalid && (editForm.controls['category'].touched)">
+            <small class="err-message" *ngIf="editForm.controls['category'].errors?.['required']">Обязательное поле</small>
+        </div>
+
+        <select id="SubCategory" class="category-selects__subcategory _form-select" formControlName="subCategory">
+            <option value="" disabled selected hidden>Нажмите, чтобы выбрать</option>
+            <option *ngFor="let category of getCategory()" [value]="category.name">{{category.name}}</option>
+        </select>
+        <div *ngIf="editForm.controls['subCategory'].invalid && (editForm.controls['subCategory'].touched)">
+            <small class="err-message" *ngIf="editForm.controls['category'].errors?.['required']">Обязательное поле</small>
+        </div>
+
+        <select id="UnderSubCategory" class="category-selects__under-subcategory _form-select" formControlName="underSubCategory">
+            <option value="" disabled selected hidden>Нажмите, чтобы выбрать</option>
+        </select>
+        <div *ngIf="editForm.controls['underSubCategory'].invalid && (editForm.controls['underSubCategory'].touched)">
+            <small class="err-message" *ngIf="editForm.controls['underSubCategory'].errors?.['required']">Обязательное поле</small>
+        </div>
+    </div>
+
+    <div class="product-edit-form__product-name product-name _subform">
+        <p class="product-name__subform-name subform-name">Название объявления<sup>*</sup></p>
+        <input class="product-name__input _form-text" type="text" id="ProductName"  formControlName="productName" placeholder="Что хотите продать?">
+
+        <div *ngIf="editForm.controls['productName'].invalid && (editForm.controls['productName'].touched || editForm.controls['productName'].dirty)">
+            <small class="err-message" *ngIf="editForm.controls['productName'].errors?.['required']">Обязательное поле</small>
+            <small class="err-message" *ngIf="editForm.controls['productName'].errors?.['maxlength']">Максимальное количество символов: 50.</small>
+        </div>
+    </div>
+
+
+    <div class="product-edit-form__product-description product-description _subform">
+        <p class="product-description__subform-name subform-name">Описание объявления<sup>*</sup></p>
+        <textarea class="product-description__textarea _form-textarea" rows="5" id="ProductDescription"  formControlName="productDescription" 
+        placeholder="Расскажите подробнее о товаре или услуге"></textarea>
+
+        <div *ngIf="editForm.controls['productDescription'].invalid && (editForm.controls['productDescription'].touched || editForm.controls['productDescription'].dirty)">
+            <small class="err-message" *ngIf="editForm.controls['productDescription'].errors?.['required']">Обязательное поле</small>
+            <small class="err-message" *ngIf="editForm.controls['productName'].errors?.['maxlength']">Максимальное количество символов: 4096.</small>
+        </div>
+    </div>
+
+    <div class="product-edit-form__address address _subform">
+        <p class="address__subform-name subform-name">Адрес (место проведения сделки)<sup>*</sup></p>
+        <input class="address__input _form-text" type="text" id="Address"  formControlName="address" placeholder="Начните вводить адрес">
+    </div>
+
+    <div class="product-edit-form__add-photos add-photos _subform">
+        <input class="add-photos__add" type="file" id="Photo" multiple accept="image/png ,image/jpeg, ,image/heic" formControlName="photo">
+        <label for="Photo">Выберите изображение</label>
+    </div>
+
+    <div class="product-edit-form__product-price product-price _subform">
+        <p class="product-price__subform-name subform-name">Цена<sup>*</sup></p>
+        <input class="product-price__input _form-text" type="text" id="ProductPrice"  formControlName="productPrice" placeholder="0 ₽">
+
+        <div *ngIf="editForm.controls['productPrice'].invalid && (editForm.controls['productPrice'].touched || editForm.controls['productPrice'].dirty)">
+            <small class="err-message" *ngIf="editForm.controls['productPrice'].errors?.['required']">Обязательное поле<br></small>
+            <small class="err-message" *ngIf="editForm.controls['productPrice'].errors?.['onlyNum']">Поле может содержать только цифры<br></small>
+            <small class="err-message" *ngIf="editForm.controls['productPrice'].errors?.['maxlength']">Максимальное количество символов: 12.<br></small>
+        </div>
+        
+    </div>
+
+    <button class="product-edit-form__button" [disabled]="editForm.invalid">Разместить объявление</button>
+
+</form>
+
+
