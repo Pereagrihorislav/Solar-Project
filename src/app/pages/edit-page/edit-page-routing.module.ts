@@ -1,11 +1,16 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule, inject } from '@angular/core';
+import { Router, RouterModule, Routes, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
+
+import { AuthService } from '../auth-page/services/auth.service';
 
 const routes: Routes = [
   {
     path: 'product',
-    component: EditFormComponent,
+    canActivate: [(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+      inject(AuthService).isAuthenticated() ? false : inject(Router).navigate(['/auth/sign-in']);  
+    }],
+    component: EditFormComponent, 
   },
 ];
 

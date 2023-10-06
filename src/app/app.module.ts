@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './layout-module/layout.module';
+import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 
 
 
@@ -20,7 +21,13 @@ import { LayoutModule } from './layout-module/layout.module';
     LayoutModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptor,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

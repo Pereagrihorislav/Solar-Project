@@ -36,6 +36,7 @@ export class SignInComponent implements OnInit {
   }
 
   signIn() {
+    //this.signInForm.disable()
     if(this.signInForm.valid){
       this.authServise.postToSignIn(this.signInForm.value).subscribe((response) => {
         console.log(response);

@@ -12,11 +12,13 @@ const routes : Routes = [
   },
   {
     path: 'main',
+    title: 'Главная',
     loadChildren: () =>
       import('./pages/main-page/main-page.module').then((m) => m.MainPageModule),
   },
   {
     path: 'edit',
+    title: 'Редактировать',
     loadChildren: () =>
       import('./pages/edit-page/edit-page.module').then((m) => m.EditPageModule),
   },
@@ -27,6 +29,7 @@ const routes : Routes = [
   },
   {
     path: 'settings',
+    title: 'Настройки',
     loadChildren: () =>
       import('./pages/settings-page/settings-page.module').then((m) => m.SettingsPageModule),
   },
