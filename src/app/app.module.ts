@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './layout-module/layout.module';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 
 
 
@@ -26,6 +27,11 @@ import { TokenInterceptor } from './shared/interceptors/token.interceptor';
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: TokenInterceptor,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: ErrorInterceptor
     }
   ],
   bootstrap: [AppComponent]

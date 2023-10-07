@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, of, tap, throwError } from 'rxjs';
 import { SignIn } from '../auth.interfaces';
 import { SignUp } from '../auth.interfaces';
 
@@ -17,10 +17,15 @@ export class AuthService {
   postToSignIn(signIn: SignIn): Observable<any> {
     return this.httpClient
       .post<any>('http://194.87.237.48:5000/Auth/Login', signIn)
-      .pipe(tap((token) => {
+      .pipe(
+        tap((token) => {
         localStorage.setItem('auth-token', `Bearer ${token}`)
-        this.setToken(token)
-      }));
+        this.setToken(token)})
+       );
+  }
+
+  getCurrentUser(): Observable<any>{
+    return this.httpClient.get<any>('http://194.87.237.48:5000/Users/current')
   }
 
   postToSignUp(signUp: SignUp): Observable<any> {

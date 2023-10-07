@@ -20,8 +20,8 @@ export class SignUpComponent {
   ngOnInit(): void {
     this.signUpForm = new UntypedFormGroup ({
       name: new FormControl (''),
-      login: new FormControl (''),
-      password: new FormControl (''),
+      login: new FormControl ('', [Validators.required, Validators.maxLength(24)]),
+      password: new FormControl ('', [Validators.required, Validators.minLength(8), Validators.maxLength(24)]),
     });
 
    /**Functional demo from last solar lecture. don't forget to delete***/ 

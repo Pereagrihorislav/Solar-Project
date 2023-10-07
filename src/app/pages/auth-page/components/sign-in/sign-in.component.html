@@ -2,6 +2,7 @@
     <h3 class="sign-form__header">Вход</h3>
     <input class="sign-form__input" type="text" id="Login" formControlName="login" placeholder="Логин">
     <input class="sign-form__input" type="text" id="Password" formControlName="password" placeholder="Пароль">
+    <small class="err-message" *ngIf="badGatewayStatus">Неверный логин или пароль</small>
     <button class="sign-form__button" (click)="signIn()">Войти</button>
     <a routerLink="/auth/sign-up" class="sign-form__switch">Нет аккаунта? Зарегистрироваться</a>
 </form>
