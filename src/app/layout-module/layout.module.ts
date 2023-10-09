@@ -10,9 +10,9 @@ import { CategoriesComponent } from './components/layout/components/header/compo
 import { SearchFormComponent } from './components/layout/components/header/components/header-menu/components/search-form/search-form.component';
 import { AddProductComponent } from './components/layout/components/header/components/header-menu/components/add-product/add-product.component';
 import { SignInComponent } from './components/layout/components/header/components/header-menu/components/sign-in/sign-in.component';
-import { FavoritesComponent } from './components/layout/components/header/components/header-menu/components/favorites/favorites.component';
 import { FormsModule } from '@angular/forms';
 import { LayoutRoutingModule } from './layout-routing.module';
+
 
 
 
@@ -28,8 +28,6 @@ import { LayoutRoutingModule } from './layout-routing.module';
     SearchFormComponent,
     AddProductComponent,
     SignInComponent,
-    FavoritesComponent,
-    
   ],
   imports: [
     CommonModule,

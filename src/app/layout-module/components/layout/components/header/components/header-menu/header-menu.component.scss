@@ -5,7 +5,7 @@
     align-items: center;
     transition: all 0.3s ease-in-out;
 
-    > *:not(:last-child){
+    > *{
         margin-right: 24px;
     }
 }
