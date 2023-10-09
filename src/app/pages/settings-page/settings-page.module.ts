@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SettingsFormComponent } from './components/settings-form/settings-form.component';
+import { SettingsPageRoutingModule } from './settings-page-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +11,10 @@ import { SettingsFormComponent } from './components/settings-form/settings-form.
     SettingsFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SettingsPageRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class SettingsPageModule { }

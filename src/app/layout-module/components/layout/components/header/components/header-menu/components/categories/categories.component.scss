@@ -1,29 +1,166 @@
-.categories-button {
-    flex: 0 0 160px;
+.categories-dropdown {
+
+    .display {
+        
+        .categories-button {
+            flex: 0 0 160px;
+            
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 36px;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: transparent;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            
+            &:hover {
+                border: 1px solid #7480ED;
+                transition: all 0.3s ease;
+            }
+            
+            &:active {
+                border: 1px solid #59D2BD;
+            }
+
+            .categories-button__image {
+                height: 20px;
+                width: 20px;
+            }
+        }
+
+        
+
+        .menu-1st-layer {
+            //display: none;
+            position: absolute;
+            left: 0;
+            padding-top: 24px;
+            width: 100%;
+            
+            .header__categories-container {
+                //position: relative;
+                max-width: 1456px;
+                padding: 0px 12px;
+                margin: 0px auto;
+                box-sizing: content-box;
+
+                .menu-1st-layer__background-wrapper {
+                    position: relative;
+                    background-color: #ffffff;
+                    padding: 24px 0 16px 0;
+                    border-radius: 0 0 8px 8px;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+                    width: 100%;
     
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 36px;
-    padding: 8px 12px;
-    font-size: 14px;
-    color: #ffffff;
-    background-color: transparent;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    
-    &:hover {
-        border: 1px solid #7480ED;
-        transition: all 0.3s ease;
-    }
-    
-    &:active {
-        border: 1px solid #59D2BD;
-    }
-    
-    .categories-button__image {
-        height: 20px;
-        width: 20px;
+                    .menu-1st-layer__item {
+                        max-width: 320px;
+                        border-right: 1px solid #1e293b;
+                        
+                        &:hover .menu-2nd-layer {
+                            display: block;
+                        }
+                        
+
+                        .menu-1st-layer__link{
+                            display: inline-block;
+                            padding: 16px 24px;
+                            font-size: 24px;
+                            font-weight: 400;
+                            width: 100%;
+                            color: #1e293b;
+                            border: 0;
+                            background-color: inherit;
+                            cursor: pointer;
+                            text-align: left;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            
+                        }
+                        
+                        .menu-2nd-layer {
+                            display: none;
+                            position: absolute;
+                            top: 32px;
+                            left: 320px;
+
+                            
+        
+                            .menu-2nd-layer__item {
+                                max-width: 320px;
+
+                                &:hover .menu-3rd-layer {
+                                    display: block;
+                                }
+                              //  &:hover .menu-3nd-layer {
+                                    display: block;
+                              //  }
+        
+                                .menu-2nd-layer__link {
+                                    display: inline-block;
+                                    padding: 8px 24px;
+                                    font-size: 18px;
+                                    
+                                    font-weight: 400;
+                                    width: 100%;
+                                    color: #1e293b;
+                                    border: 0;
+                                    background-color: inherit;
+                                    cursor: pointer;
+                                    text-align: left;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                }
+        
+                                .menu-3rd-layer {
+                                    display: none;
+                                    position: absolute;
+                                    top:  0;
+                                    left: 100%;
+        
+                                    .menu-3rd-layer__item {
+                                        max-width: 560px;
+        
+                                        .menu-3rd-layer__link {
+                                            display: inline-block;
+                                            padding: 8px 24px;
+                                            font-size: 18px;
+                                            font-weight: 400;
+                                            width: 100%;
+                                            color: #1e293b;
+                                            text-decoration: none;
+                                            
+                                            white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

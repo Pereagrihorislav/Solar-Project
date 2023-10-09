@@ -1,22 +1,74 @@
-.sign-in-button {
-    flex: 0 0 74px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 36px;
-    padding: 8px 0;
-    font-size: 14px;
-    color: #ffffff;
-    background-color: transparent;
-    border: none;
-
-    &:hover {
-        color: #7480ED;
-        transition: all 0.3s ease;
-    }
+.sign-in-dropdown {
+    .sign-in-dropdown__link {
+        position: relative;
     
-    &:active {
-        color: #59D2BD;
+        &:hover .dropdown-submenu {
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .sign-in-button {
+            flex: 0 0 74px;
+            
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 36px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: transparent;
+            border: none;
+        
+            &:hover {
+                color: #7480ED;
+                transition: all 0.3s ease;
+            }
+            
+            &:active {
+                color: #59D2BD;
+            }
+        }
+    }
+
+    .dropdown-submenu {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #ffffff;
+        color: #1e293b;
+        padding: 16px;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+        
+        .dropdown-submenu__link {
+            padding-bottom: 16px;
+            white-space: nowrap;
+    
+            button {
+                padding: 0;
+                border: none;
+                font: inherit;
+                background-color: transparent;
+                cursor: pointer;
+            }
+    
+            &:active {
+                color: #59D2BD;
+            }
+        }
+    
+        .dropdown-submenu__link:last-child {
+            padding-bottom: 0;
+    
+            span {
+                color: red;
+            }
+        }
     }
 }
+
+
+
+
 

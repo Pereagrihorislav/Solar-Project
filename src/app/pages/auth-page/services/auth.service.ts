@@ -9,7 +9,6 @@ import { SignUp } from '../auth.interfaces';
   providedIn: 'root'
 })
 export class AuthService {
-
   private token!: string;
 
   constructor(private httpClient: HttpClient) { }
@@ -20,7 +19,7 @@ export class AuthService {
       .pipe(
         tap((token) => {
         localStorage.setItem('auth-token', `Bearer ${token}`)
-        this.setToken(token)})
+        this.setToken(`Bearer ${token}`)})
        );
   }
 
@@ -34,7 +33,7 @@ export class AuthService {
   }
 
   setToken(token: string) {
-    this.token = `Bearer ${token}`
+    this.token = token
   }
 
   getToken(): string {
@@ -46,9 +45,15 @@ export class AuthService {
     return !!this.token
   }
 
+  /*Special for components, what changing dynamicly, depending on user's status 
+    and I'm barely sure that's tecnicly incorrect*/
+  isAuthenticatedStatus(): Observable<boolean> {
+    return of (!!this.token)
+  }
+
   SignOut(){
     this.setToken('')
-    localStorage.clear
+    localStorage.clear()
   }
 
   

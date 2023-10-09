@@ -1,6 +1,33 @@
-<button class="header__categories-button categories-button _button">
-    <div class="categories-button__image">
-        <img src="/assets/img/icons/categories-icon.svg"  alt="Категории">
-    </div>
-    <span class="categories-button__text">Все категории</span>
-</button>
+<ul class="header__categories-dropdown categories-dropdown">
+    <li class="categories-dropdown__display display">
+        <button class="display__categories-button categories-button _button" (click)="getCat()">
+            <div class="categories-button__image">
+                <img src="/assets/img/icons/categories-icon.svg"  alt="Категории">
+            </div>
+            <span class="categories-button__text">Все категории</span>
+        </button>
+        
+        <ul class="categories-dropdown__menu-1st-layer menu-1st-layer">
+            <div class="header__categories-container _container">
+                <div class="menu-1st-layer__background-wrapper">
+
+                <li *ngFor="let category of grandParents"  class="menu-1st-layer__item">
+                    <button class="menu-1st-layer__link" (mouseenter)="getByParent(category.name, grandParents, childrenFirstLayer, categoriesList)" >{{category.name}}</button>
+                    <ul class="menu-1st-layer__menu-2nd-layer menu-2nd-layer">
+                        <li *ngFor="let category of childrenFirstLayer" class="menu-2nd-layer__item">
+                            <button class="menu-2nd-layer__link" (mouseenter)="getByParent(category.name, childrenFirstLayer, childrenSecondLayer, categoriesList)">{{category.name}}</button>
+                            <ul class="menu-2nd-layer__menu-3rd-layer menu-3rd-layer">
+                                <li *ngFor="let category of childrenSecondLayer" class="menu-3rd-layer__item">
+                                    <a href="#" class="menu-3rd-layer__link">{{category.name}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                </div>
+            </div>
+        </ul>
+        
+    </li>
+</ul>
