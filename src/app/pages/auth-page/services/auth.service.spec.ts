@@ -32,6 +32,37 @@ describe('AuthService', () => {
 
     httpTestingController.verify();
   });
+
+  it('should return true when authenticated', () => {
+    const token = 'your-token';
+
+    authService.setToken(token);
+    expect(authService.isAuthenticated()).toBe(true);
+  });
+
+  it('should return false when not authenticated', () => {
+    authService.setToken('');
+    expect(authService.isAuthenticated()).toBe(false);
+  });
+
+  it('should return true when authenticated status', () => {
+    const token = 'your-token';
+
+    authService.setToken(token);
+    authService.isAuthenticatedStatus().subscribe((result) => {
+      expect(result).toBe(true);
+    });
+  });
+
+  it('should clear token and localStorage on sign-out', () => {
+    const token = 'your-token';
+
+    authService.setToken(token);
+    authService.SignOut();
+
+    expect(authService.getToken()).toBe('');
+    expect(localStorage.getItem('auth-token')).toBeNull();
+  });
 });
 
   
