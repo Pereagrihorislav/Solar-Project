@@ -1,9 +1,9 @@
 <div action="" class="header__search-form search-form">
     <input class="search-form__text-field"  type="text"  name="text-field" [(ngModel)]="search" placeholder="Поиск по объявлениям">
-    <button class="search-form__search-button search-button _button" >
+    <button class="search-form__search-button search-button _button" (click)="SearchAdvert()">
         <span class="search-button__text">Найти</span>
         <div class="search-button__image">
-            <img src="/assets/img/icons/search-icon.svg" (click)="SearchAdvert()" alt="Поиск">
+            <img src="/assets/img/icons/search-icon.svg" alt="Поиск">
         </div>
     </button>
 </div>

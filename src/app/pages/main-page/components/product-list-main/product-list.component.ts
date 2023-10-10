@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../../services/product.service';
 import { Product } from '../product/product.interface';
+import { SearchService } from 'src/app/layout-module/components/layout/components/header/services/search.service';
 
 @Component({
   selector: 'app-product-list',
@@ -12,11 +12,11 @@ export class ProductListComponent implements OnInit {
   products: Array<Product> | undefined;
 
 
-  constructor(private _productService: ProductsService) {}
+  constructor(private searchService: SearchService) {}
 
   ngOnInit() {
-    this._productService.getAllProducts().subscribe(resp => {
-      this.products = resp
+    this.searchService.search('').subscribe((response) => {
+      this.products = response
     })
   }
 

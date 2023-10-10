@@ -65,7 +65,7 @@ export class EditFormComponent  implements OnInit{
   /**there is a crutch here, we need to think more */
 
   getCategory() : Array<Category> {
-     return this.categories.filter((obj) => obj.parentId == '00000000-0000-0000-0000-000000000000');
+     return this.categories!.filter((obj) => obj.parentId == '00000000-0000-0000-0000-000000000000');
      
   }
 

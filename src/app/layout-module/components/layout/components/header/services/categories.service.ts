@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AsyncSubject, Observable } from 'rxjs';
-import { Category, ExtCategory } from '../categories.interface';
+import { Category, ExtCategory } from '../components/header-menu/components/categories/categories.interface';
 
 @Injectable({
   providedIn: 'root'

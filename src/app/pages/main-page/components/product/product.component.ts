@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Product } from './product.interface';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map } from 'rxjs';
+import { format } from 'date-fns';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-product',
@@ -11,6 +13,10 @@ import { Observable, map } from 'rxjs';
 export class ProductComponent {
 
   @Input() product!: Product
+  
+  
+  
+
 
   public id: Observable<string> = this.activatedRoute.params.pipe(map((r: any) => r.id)); 
   constructor(private activatedRoute: ActivatedRoute) {

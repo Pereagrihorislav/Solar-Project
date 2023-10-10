@@ -46,7 +46,6 @@ export class SignInComponent implements OnInit {
     if(this.signInForm.valid){
       this.authServise.postToSignIn(this.signInForm.value).subscribe(
         (response) => {
-        console.log(response);
         this.router.navigate(['/main'])
         },
         (error) => {

@@ -1,6 +1,7 @@
 import { Component, } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { SearchService } from '../../../../services/search.service';
 
 @Component({
@@ -18,12 +19,12 @@ export class SearchFormComponent {
     this.httpClient = _http;
   }
 
-  SearchAdvert(): void {
+  SearchAdvert() {
     if (this.search) {
-        this.searchService.search(this.search)
-        .subscribe((search) => {
-          console.log(search);
-        });
-    }
+      this.searchService.changeSearchInput(this.search)
+      if (this.router.url !== 'main/search') {
+        this.router.navigate(['main/search']);
+      } else {}
+    };
   }
 }

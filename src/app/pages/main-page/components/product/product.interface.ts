@@ -1,8 +1,9 @@
 export interface Product {
-    id: number
-    title: string
-    price: number
-    category: string
-    description: string
-    image: string
+    cost: number
+    createdAt: string
+    id: string
+    imagesIds: string[]
+    isActive: boolean
+    location: string
+    name: string
 }
