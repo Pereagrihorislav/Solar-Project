@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SettingsFormComponent } from './settings-form.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SettingsFormComponent', () => {
   let component: SettingsFormComponent;
@@ -8,6 +9,7 @@ describe('SettingsFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [SettingsFormComponent]
     });
     fixture = TestBed.createComponent(SettingsFormComponent);

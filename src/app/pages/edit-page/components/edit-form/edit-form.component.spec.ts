@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditFormComponent } from './edit-form.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('EditFormComponent', () => {
   let component: EditFormComponent;
@@ -8,6 +9,7 @@ describe('EditFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [EditFormComponent]
     });
     fixture = TestBed.createComponent(EditFormComponent);

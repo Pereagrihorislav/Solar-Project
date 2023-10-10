@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductListUsersComponent } from './product-list-users.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProductListUsersComponent', () => {
   let component: ProductListUsersComponent;
@@ -8,6 +9,7 @@ describe('ProductListUsersComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [ProductListUsersComponent]
     });
     fixture = TestBed.createComponent(ProductListUsersComponent);

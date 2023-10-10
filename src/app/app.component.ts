@@ -8,6 +8,7 @@ import { AuthService } from './pages/auth-page/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  title: any;
 
   constructor (private auth: AuthService) {}
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductListSearchComponent } from './product-list-search.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProductListSearchComponent', () => {
   let component: ProductListSearchComponent;
@@ -8,6 +9,7 @@ describe('ProductListSearchComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [ProductListSearchComponent]
     });
     fixture = TestBed.createComponent(ProductListSearchComponent);

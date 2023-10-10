@@ -22,8 +22,6 @@ export class SignInComponent implements OnInit {
     this.httpClient = _http;
   }
 
-  
-
   ngOnInit(): void {
     if (this.authServise.isAuthenticated()) this.router.navigate(['/main']);
 

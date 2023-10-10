@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderMenuComponent } from './header-menu.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('HeaderMenuComponent', () => {
   let component: HeaderMenuComponent;
@@ -8,6 +9,7 @@ describe('HeaderMenuComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [HeaderMenuComponent]
     });
     fixture = TestBed.createComponent(HeaderMenuComponent);

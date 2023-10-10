@@ -19,7 +19,6 @@ import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
     AuthPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-   
   ]
 })
 export class AuthPageModule { }
