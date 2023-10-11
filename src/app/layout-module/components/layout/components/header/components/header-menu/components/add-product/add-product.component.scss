@@ -10,17 +10,20 @@
     background-color: #4C58C8;
     border: none;
     border-radius: 4px;
+    transition: all 0.3s ease;
 
+    .add-product-button__text{
+        margin-right: 4px;
+    }
     &:hover {
         background-color: #7480ED;
-        transition: all 0.3s ease;
     }
     
     &:active {
         background-color: #59D2BD;
     }
 
-    add-product-button__image img {
+    .add-product-button__image {
         height: 20px;
         width: 20px;
     }

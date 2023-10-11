@@ -12,6 +12,7 @@ export class SearchService {
 
   private searchInputSource = new BehaviorSubject<string>('');
   searchInput = this.searchInputSource.asObservable();
+  static searchInput: any;
 
   constructor(private httpClient: HttpClient) { }
 

@@ -1,10 +1,16 @@
 .header__logo {
     margin: 5px 56px 5px 0;
     font-size: 32px;
-
+    vertical-align: center;
+    
     a {
         color: #ffffff;
         white-space: nowrap;
+        transition: all 0.3s ease;
+
+        &:active {
+            color: #59D2BD;
+        }
     }
 }
 

@@ -14,10 +14,12 @@ const routes: Routes = [
   },
   {
     path: 'search',
+    title: 'Поиск объявлений',
     component: ProductListSearchComponent,
   },
   {
     path: 'user-products',
+    title: 'Мои объявления',
     canActivate: [(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
       inject(AuthService).isAuthenticated() ? false : inject(Router).navigate(['/auth/sign-in']);  
     }],

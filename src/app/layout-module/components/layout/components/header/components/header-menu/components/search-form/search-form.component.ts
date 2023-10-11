@@ -1,17 +1,15 @@
 import { Component, } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { SearchService } from '../../../../services/search.service';
 
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
-  styleUrls: ['./search-form.component.scss']
+  styleUrls: ['./search-form.component.scss', '../../../../header.component-adaptive.scss']
 })
 
 export class SearchFormComponent {
-  
   public search = '';
   private httpClient : HttpClient;
 
@@ -24,7 +22,7 @@ export class SearchFormComponent {
       this.searchService.changeSearchInput(this.search)
       if (this.router.url !== 'main/search') {
         this.router.navigate(['main/search']);
-      } else {}
+      }
     };
   }
 }

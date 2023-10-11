@@ -40,6 +40,5 @@ export class ProductListSearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.refreshSubscription.unsubscribe;
-    this.currentSearchInput = '';
   }
 }

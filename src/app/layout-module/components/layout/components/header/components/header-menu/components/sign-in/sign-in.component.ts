@@ -1,29 +1,28 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
 import { AuthService } from 'src/app/pages/auth-page/services/auth.service';
 
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  styleUrls: ['./sign-in.component.scss', '../../../../header.component-adaptive.scss']
 })
-export class SignInComponent implements OnInit, OnChanges {
+export class SignInComponent implements OnInit {
   authStatus: boolean = false;
+  currentUser!: string | null;
 
   constructor(private auth: AuthService, private router: Router){}
 
   ngOnInit(): void {
-    this.auth.isAuthenticatedStatus().subscribe((response) => {
-      this.authStatus = response
-      
-    })
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
-    this.auth.isAuthenticatedStatus().subscribe((response) => {this.authStatus = response})
+    this.auth.authStatus.subscribe(response => this.authStatus = response);
+    this.auth.currUsername.subscribe(response => {
+      if(response) {
+        this.currentUser = response;
+      } else {
+        this.currentUser = localStorage.getItem('user-name')!.replace(/"/g, '');
+      }
+    });
   }
 
   exit(): void {

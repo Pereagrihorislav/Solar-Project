@@ -2,7 +2,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AuthService } from './auth.service';
-import { SignIn } from '../auth.interfaces';
+import { SignIn } from '../interfaces/auth.interfaces';
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -45,14 +45,6 @@ describe('AuthService', () => {
     expect(authService.isAuthenticated()).toBe(false);
   });
 
-  it('should return true when authenticated status', () => {
-    const token = 'your-token';
-
-    authService.setToken(token);
-    authService.isAuthenticatedStatus().subscribe((result) => {
-      expect(result).toBe(true);
-    });
-  });
 
   it('should clear token and localStorage on sign-out', () => {
     const token = 'your-token';

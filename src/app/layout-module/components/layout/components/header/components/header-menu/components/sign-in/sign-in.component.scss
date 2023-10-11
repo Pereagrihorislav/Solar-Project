@@ -9,24 +9,27 @@
 
         .sign-in-button {
             flex: 0 0 74px;
-            
             display: flex;
             align-items: center;
             justify-content: space-between;
             height: 36px;
-            padding: 8px 0;
+            padding: 8px 8px;
             font-size: 14px;
             color: #ffffff;
             background-color: transparent;
             border: none;
-        
-            &:hover {
-                color: #7480ED;
-                transition: all 0.3s ease;
+            transition: all 0.3s ease;
+
+            .sign-in-button__image {
+                margin-right: 4px;
             }
+        
             
-            &:active {
-                color: #59D2BD;
+        }
+
+        .isntAuth {
+            &:hover {
+                border-bottom: 1px solid #ffffff;
             }
         }
     }

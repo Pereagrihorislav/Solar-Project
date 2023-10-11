@@ -1,7 +1,7 @@
 
 .categories-button {
     flex: 0 0 160px;
-display: flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     height: 36px;
@@ -11,58 +11,53 @@ display: flex;
     background-color: transparent;
     border: 1px solid #ffffff;
     border-radius: 4px;
+    transition: all 0.3s ease;
             
         &:hover {
-            border: 1px solid #7480ED;
-            transition: all 0.3s ease;
+            background-color: #4C58C8;
            }
             
         &:active {
-            border: 1px solid #59D2BD;
+            border: none;
+            background-color: #59D2BD;
         }
 
         .categories-button__image {
+            margin-right: 4px;
             height: 20px;
             width: 20px;
         }
 }
 
-.menu-1st-layer {
+
+.header__categories-container {
     position: absolute;
     left: 0;
-    padding-top: 24px;
+    z-index: 49;
     width: 100%;
-    
-    .header__categories-container {
+    margin: 24px auto 0 auto;
+    box-sizing: content-box;
+
+    .header__background-wrapper {
+        display: flex;
+        position: relative;
         max-width: 1456px;
-        padding: 0px 12px;
-        margin: 0px auto;
-        box-sizing: content-box;
-        
-        .menu-1st-layer__background-wrapper {
-            position: relative;
-            background-color: #ffffff;
-            padding: 24px 0 16px 0;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-            width: 100%;
-            overflow: hidden;
-            overflow-y: scroll;
-            scrollbar-width: 0;
+        max-height: 590px;
+        background-color: #ffffff;
+        padding: 24px 16px 16px 16px;
+        margin: 0 auto;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+        width: 100%;
+        overflow: hidden;
 
-            &::-webkit-scrollbar {
-                display: none;
-            }
-
-
-
+        .menu-1st-layer {
             .menu-1st-layer__item {
-                max-width: 400px;
+                position: relative;
+                display:flex;
+                justify-content: space-between;
+                width: 380px;
                 border-right: 1px solid #1e293b;
-                
-                &:hover .menu-2nd-layer {
-                    display: block;
-                }
                 
                 .menu-1st-layer__link{
                     display: inline-block;
@@ -72,7 +67,64 @@ display: flex;
                     width: 100%;
                     color: #1e293b;
                     border: 0;
-                    
+                    border-radius: 8px 0 0 8px;
+                    background-color: inherit;
+                    text-align: left;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+
+                    &:hover {
+                        background-color: #7480ED;
+                        color:#ffffff
+                    }
+
+                    &::after {
+                        content: '\21C0';
+                        position:absolute;
+                        right: 24px;
+                        top: 30%;
+                        
+                    }
+                }
+            
+            }
+        }
+
+        .menu-2nd-layer {
+            padding: 32px 0 16px 0;
+            max-width: 100%;
+            overflow-y: scroll;
+            scrollbar-width: 0;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .category-head {
+                font-size: 24px;
+                font-weight: 600;
+                color: #1e293b;
+                padding: 0 24px;
+                width: 100%;
+                margin: 0 0 16px 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            .menu-2nd-layer__item {
+                max-width: 320px;
+
+                .menu-2nd-layer__link {
+                    display: inline-block;
+                    padding: 16px 24px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    border-radius: 0 8px 8px 0;
+                    width: 100%;
+                    color: #1e293b;
+                    border: 0;
                     background-color: inherit;
                     cursor: pointer;
                     text-align: left;
@@ -81,95 +133,52 @@ display: flex;
                     text-overflow: ellipsis;
 
                     &:hover {
-                        background-color: #CBD5E1;
+                        background-color: #7480ED;
+                        color:#ffffff
                     }
-                    
                 }
+            }
+        }    
 
+        .menu-3rd-layer {
+            padding: 32px 0 16px 0;
+            margin-left: 16px;
+            max-width: 100%;
+            overflow-y: scroll;
+            scrollbar-width: 0;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        
+            .menu-3rd-layer__item {
+                max-width: 100%;
                 
-                .menu-2nd-layer {
-                    display: none;
-                    position: absolute;
-                    top: 0;
-                    left: 400px;
-                    height: 100%;
-                    padding: 32px 0 16px 0;
-                    max-width: 100%;
+                .menu-3rd-layer__link {
+                    display: inline-block;
+                    padding: 16px 24px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    border-radius: 8px;
+                    width: max-content;
+                    color: #1e293b;
+                    text-decoration: none;
+                    cursor: pointer;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
 
-                    &:hover .menu-3rd-layer {
-                        display: block;
-                    }
-                    
-
-                    .category-head {
-                        font-size: 24px;
-                        font-weight: 600;
-                        color: #1e293b;
-                        padding: 0 24px;
-                        width: 100%;
-                        margin: 0 0 24px 0;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                    }
-                    
-
-                    .menu-2nd-layer__item {
-                        max-width: 320px;
-
-                        &:hover .menu-3rd-layer {
-                            display: block;
-                        }
-                     
-
-                        .menu-2nd-layer__link {
-                            display: inline-block;
-                            padding: 8px 24px;
-                            font-size: 18px;
-                            font-weight: 400;
-                            width: 100%;
-                            color: #1e293b;
-                            border: 0;
-                            background-color: inherit;
-                            cursor: pointer;
-                            text-align: left;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                        }
-
-                        .menu-3rd-layer {
-                            display: none;
-                            position: absolute;
-                            top:  0;
-                            padding: 32px 0 16px 0;
-                            left: 100%;
-                            height: 100%;
-
-                            .menu-3rd-layer__item {
-                                max-width: 100%;
-
-                                .menu-3rd-layer__link {
-                                    display: inline-block;
-                                    padding: 8px 24px;
-                                    font-size: 18px;
-                                    font-weight: 400;
-                                    width: max-content;
-                                    color: #1e293b;
-                                    text-decoration: none;
-                                    
-                                    white-space: nowrap;
-                                    overflow: hidden;
-                                    text-overflow: ellipsis;
-                                }
-                            }
-                        }
+                    &:hover {
+                        background-color: #7480ED;
+                        color:#ffffff
                     }
                 }
             }
         }
+
     }
 }
+
         
 
    

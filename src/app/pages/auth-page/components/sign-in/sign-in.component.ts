@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormControl, FormGroup, UntypedFormGroup, Validators } from '@angular/forms';
 import { OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -43,8 +43,9 @@ export class SignInComponent implements OnInit {
   signIn() {
     if(this.signInForm.valid){
       this.authServise.postToSignIn(this.signInForm.value).subscribe(
-        (response) => {
-        this.router.navigate(['/main'])
+        () => {
+        this.authServise.getCurrentUser().subscribe();
+        this.router.navigate(['/main']);
         },
         (error) => {
           this.badGatewayStatus = true;
@@ -53,8 +54,6 @@ export class SignInComponent implements OnInit {
       
     }
   }
-
-  
     
   
 }

@@ -3,9 +3,10 @@
     display: flex;
     transition: all 0.3s ease;
 
+    
     .search-form__text-field {
         height: 36px;
-        width: 36vw;
+        width:27vw;
         padding: 8px 12px;
         margin: 0 0                 !important;
         font-size: 14px;
@@ -16,11 +17,11 @@
         border-bottom: 1px solid #CBD5E1;
         border-right: none;
         border-radius: 4px 0 0 4px;
-        
+            
     }
 
-    .search-form__search-button {
-        flex: 0 0 95px;
+    .search-button {
+        width: 95px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -31,10 +32,11 @@
         background-color: #4C58C8;
         border: none;
         border-radius: 0 4px 4px 0;
+        transition: all 0.3s ease;
 
         &:hover {
             background-color: #7480ED;
-            transition: all 0.3s ease;
+            
         }
         
         &:active {

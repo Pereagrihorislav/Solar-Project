@@ -5,7 +5,7 @@ import { ExtCategory, Category } from './categories.interface';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+  styleUrls: ['./categories.component.scss', '../../../../header.component-adaptive.scss']
 })
 export class CategoriesComponent implements OnInit {
   categoriesList!: Array<Category>;
@@ -28,6 +28,8 @@ export class CategoriesComponent implements OnInit {
   loadMenu() {
     this.menuIsVisible = !this.menuIsVisible
   }
+
+ 
 
   getByParent(parentName: string, parents: Array<Category>, currentLayer: Array<Category>, categories: Array<Category>): Array<Category> {
     const filteredLayer = categories.filter((category) => category.parentId === parents.find(parent => parent.name === parentName)?.id)
