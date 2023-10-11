@@ -18,7 +18,7 @@ export class SearchFormComponent {
   }
 
   SearchAdvert() {
-    if (this.search) {
+     if(this.search) {
       this.searchService.changeSearchInput(this.search)
       if (this.router.url !== 'main/search') {
         this.router.navigate(['main/search']);

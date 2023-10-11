@@ -1,3 +1,17 @@
+.no-scroll {
+    overflow: hidden;
+  }
+
+.overlay {
+    position: fixed;
+    top: 108px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: 50; 
+}
+
 
 .categories-button {
     flex: 0 0 160px;
@@ -157,13 +171,15 @@
                 .menu-3rd-layer__link {
                     display: inline-block;
                     padding: 16px 24px;
-                    font-size: 16px;
+                    font-size: 18px;
                     font-weight: 600;
                     border-radius: 8px;
-                    width: max-content;
+                    width: 100%;
                     color: #1e293b;
-                    text-decoration: none;
+                    border: 0;
+                    background-color: inherit;
                     cursor: pointer;
+                    text-align: left;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;

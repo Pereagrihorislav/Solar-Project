@@ -12,33 +12,37 @@ import { Product } from '../product/product.interface';
 })
 export class ProductListSearchComponent implements OnInit, OnDestroy {
 
-  private currentSearchInput: string = ''
-  private refreshSubscription!: Subscription;
+  currentSearchInput: string = ''
+  private refreshBySearch!: Subscription;
   products: Array<Product> | undefined;
 
  constructor(private router: Router, _http: HttpClient, private searchService: SearchService){
   }
 
   displaySearchResults(): void {
-    this.searchService.searchInput.subscribe(input => this.currentSearchInput = input);
+    this.searchService.searchInput.subscribe((searchFormInput) => {
+      this.currentSearchInput = searchFormInput;
+    });
+
     this.searchService.search(this.currentSearchInput).subscribe((response) => {
       console.log(response);
       this.products = response;
     });
-    
+
   }
 
   ngOnInit(): void {
-   this.refreshSubscription = this.searchService.searchInput.pipe(
+   this.refreshBySearch = this.searchService.searchInput
+   .pipe(
     switchMap(() => {
       this.displaySearchResults();
       return EMPTY;
     })
-   )
-   .subscribe(input => console.log(input))
+   ).subscribe()
+
   }
 
   ngOnDestroy(): void {
-    this.refreshSubscription.unsubscribe;
+    this.refreshBySearch.unsubscribe;
   }
 }

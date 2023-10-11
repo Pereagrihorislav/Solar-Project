@@ -20,7 +20,8 @@ export class SignInComponent implements OnInit {
       if(response) {
         this.currentUser = response;
       } else {
-        this.currentUser = localStorage.getItem('user-name')!.replace(/"/g, '');
+        const storedUsername = localStorage.getItem('user-name');
+        this.currentUser = storedUsername ? storedUsername.replace(/"/g, '') : '';
       }
     });
   }

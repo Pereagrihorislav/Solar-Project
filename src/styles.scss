@@ -42,6 +42,20 @@ body {
 	font-family: "Montserrat", sans-serif;
 }
 
+.no-scroll {
+    overflow: hidden;
+  }
+
+.overlay {
+	position: fixed;
+	top: 108px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.6); 
+	z-index: 50; 
+}
+
 .page {
 	display: flex;
 	flex-direction: column;

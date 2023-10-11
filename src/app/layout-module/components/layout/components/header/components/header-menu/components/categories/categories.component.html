@@ -9,18 +9,20 @@
         <div class="header__background-wrapper">
             <ul class="categories-dropdown__menu-1st-layer menu-1st-layer">
                 <li *ngFor="let category of grandParents"  class="menu-1st-layer__item">
-                    <button class="menu-1st-layer__link" (mouseenter)="getByParent(category.name, grandParents, childrenFirstLayer, categoriesList)">{{category.name}}</button>
+                    <button class="menu-1st-layer__link" 
+                    (mouseenter)="getByParent(category.name, grandParents, childrenFirstLayer, categoriesList)">{{category.name}}</button>
                 </li>
             </ul>
             <ul class="menu-1st-layer__menu-2nd-layer menu-2nd-layer">
                 <h3 class="menu-2nd-layer__category-head category-head">Категории:</h3>
                 <li *ngFor="let category of childrenFirstLayer" class="menu-2nd-layer__item">
-                    <button class="menu-2nd-layer__link" (mouseenter)="getByParent(category.name, childrenFirstLayer, childrenSecondLayer, categoriesList)">{{category.name}}</button>
+                    <button (click)="categorySearch(category.id, category.name)" class="menu-2nd-layer__link" 
+                    (mouseenter)="getByParent(category.name, childrenFirstLayer, childrenSecondLayer, categoriesList)">{{category.name}}</button>
                 </li>
             </ul>
             <ul class="menu-2nd-layer__menu-3rd-layer menu-3rd-layer">
                 <li *ngFor="let category of childrenSecondLayer" class="menu-3rd-layer__item">
-                    <a href="#" class="menu-3rd-layer__link">{{category.name}}</a>
+                    <button (click)="categorySearch(category.id, category.name)" class="menu-3rd-layer__link">{{category.name}}</button>
                 </li>
             </ul>
         </div>
