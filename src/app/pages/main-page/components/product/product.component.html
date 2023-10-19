@@ -1,7 +1,7 @@
 <article class="product-list__product-card product-card">
     <a href="#" class="product-card__body">
         <div class="product-card__image _ibg">
-            <img [src]="product.imagesIds" alt="product photo">
+            <img [src]= "imageSrc(product.imagesIds[0])" alt="product photo">
         </div>
         <div class="product-card__description">
             <h4 class="product-card__name">{{ product.name }}</h4>

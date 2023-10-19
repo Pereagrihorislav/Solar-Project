@@ -14,17 +14,16 @@ export class CategoriesComponent implements OnInit {
   grandParents!: Array<Category>;
   childrenFirstLayer:  Array<Category> = [];
   childrenSecondLayer: Array<Category> = [];
-  defaultCategoryId: string = '00000000-0000-0000-0000-000000000000';
   menuIsVisible: boolean = false;
   categoryToSearchId: string = '';
 
-  constructor(private categoriesServise: CategoriesService, private searchService: SearchService, private router: Router) { }
+  constructor(private categoriesService: CategoriesService, private searchService: SearchService, private router: Router) { }
   
   ngOnInit(): void {
-    this.categoriesServise.getAllCategories().subscribe((response) => {
+    this.categoriesService.getAllCategories().subscribe((response) => {
       this.categoriesList = response;
       this.grandParents = this.categoriesList
-      .filter((category) => category.parentId == this.defaultCategoryId && category.name !== 'Anything' && category.name !== 'Default');
+      .filter((category) => category.parentId == this.categoriesService.getDefaultcategoryId() && category.name !== 'Anything' && category.name !== 'Default');
     })
   }
 

@@ -8,6 +8,11 @@ import { Category, ExtCategory } from '../components/header-menu/components/cate
   providedIn: 'root'
 })
 export class CategoriesService {
+  private defaultCategoryId: string = '00000000-0000-0000-0000-000000000000';
+
+  getDefaultcategoryId(): string {
+    return this.defaultCategoryId
+  }
 
   constructor(private _http: HttpClient) { }
 
