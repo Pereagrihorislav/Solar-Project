@@ -8,4 +8,8 @@ footer {
     font-family: "Montserrat", sans-serif;
     color:#ffffff;
     background: linear-gradient(180deg, rgba(41,50,139,1) 5%, rgba(76,88,200,1) 35%, rgba(89,210,189,1) 100%);
+
+    .footer__container {
+        justify-content: center;
+    }
 }

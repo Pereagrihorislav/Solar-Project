@@ -1,14 +1,25 @@
-.app-product-list__search {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+h2 {
+    margin-bottom: 36px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #1e293b;
 }
 
-.app-product-list__search >*{
-    margin-bottom: 32px;
-    position:relative;
+.app-product-list-search__container {
+    .app-product-list__search {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    
+    .app-product-list__search >*{
+        margin-bottom: 32px;
+        position:relative;
+    }
+    
+    .app-product-list__search >*:not(:nth-child(5n)) {
+        margin-right: 24px;
+    }
 }
 
-.app-product-list__search >*:not(:nth-child(5n)) {
-    margin-right: 24px;
-}

@@ -1,5 +1,7 @@
-<h2>{{currentSearchInput}}</h2>
-
-<div class="app-product-list__search">
-    <app-product *ngFor="let product of products" [product]="product"></app-product>
+<h2>Результаты поиска по запросу "{{currentSearchInput}}":</h2>
+<div class="app-product-list-search__container">
+    <div class="app-product-list__search">
+        <app-product *ngFor="let product of products" [product]="product"></app-product>
+    </div>
 </div>
+

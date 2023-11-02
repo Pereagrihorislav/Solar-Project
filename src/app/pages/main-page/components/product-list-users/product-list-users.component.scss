@@ -1,0 +1,33 @@
+h2 {
+    margin-bottom: 36px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #1e293b;
+}
+
+.app-product-list-users__container {
+
+    .app-product-list__users {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        & >*{
+            margin-bottom: 32px;
+            position:relative;
+        }
+
+        & >*:not(:nth-child(5n)) {
+            margin-right: 24px;
+        }
+        
+    }
+
+}
+
+
+
+
+ 
+
