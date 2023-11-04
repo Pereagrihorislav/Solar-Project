@@ -7,6 +7,8 @@ h2 {
 }
 
 .app-product-list__container {
+    justify-content: center;
+
     .app-product-list {
         display: flex;
         flex-wrap: wrap;

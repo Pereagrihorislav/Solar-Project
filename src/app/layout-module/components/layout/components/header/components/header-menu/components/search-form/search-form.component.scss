@@ -21,7 +21,7 @@
     }
 
     .search-button {
-        width: 95px;
+        width: fit-content;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -34,9 +34,12 @@
         border-radius: 0 4px 4px 0;
         transition: all 0.3s ease;
 
+        .search-button__text {
+            margin-right: 8px;
+        }
+
         &:hover {
             background-color: #7480ED;
-            
         }
         
         &:active {

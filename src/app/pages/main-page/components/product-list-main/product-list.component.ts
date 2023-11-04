@@ -5,7 +5,7 @@ import { SearchService } from 'src/app/layout-module/components/layout/component
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ['./product-list.component.scss', './product-list.component-adaptive.scss']
 })
 export class ProductListComponent implements OnInit {
 

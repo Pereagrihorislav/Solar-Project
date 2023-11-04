@@ -5,7 +5,7 @@ import { Product } from '../product/product.interface';
 @Component({
   selector: 'app-product-list-users',
   templateUrl: './product-list-users.component.html',
-  styleUrls: ['./product-list-users.component.scss']
+  styleUrls: ['./product-list-users.component.scss', './product-list-users.component-adaptive.scss']
 })
 export class ProductListUsersComponent implements OnInit {
 

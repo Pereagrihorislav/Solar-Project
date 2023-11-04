@@ -71,11 +71,26 @@
             <div class="image-preview-list" *ngIf="imagesArray.length != 0">
                 <div class="image-preview" *ngFor="let image of imagesArray; let i = index">
                     <img [src]="image.url" alt="Image">
-                    <button (click)="removeImage(i)"></button>
+                    <button class="_button" (click)="removeImage(i)">
+                        <img src="../../../../../assets/img/icons/cross-icon.svg" width="16px">
+                    </button>
                 </div>
             </div>
         </div>
+        
+        <div class="product-edit-form__contact-phone contact-phone _subform">
+            <p class="contact-phone__subform-name subform-name">Контактный номер<sup>*</sup></p>
+            <input class="contact-phone__input _form-text" type="text" id="ContactPhone"  formControlName="contactPhone" placeholder="+7(000)000-00-00">
     
+            <div *ngIf="editForm.controls['contactPhone'].invalid && (editForm.controls['contactPhone'].touched || editForm.controls['contactPhone'].dirty)">
+                <small class="err-message" *ngIf="editForm.controls['contactPhone'].errors?.['required']">Обязательное поле<br></small>
+                <small class="err-message" *ngIf="editForm.controls['contactPhone'].errors?.['phoneNumber']">Поле может содержать только цифры и символы "+", "-", и "()"<br></small>
+                <small class="err-message" *ngIf="editForm.controls['contactPhone'].errors?.['minlength']">Минимальное количество символов: 8.<br></small>
+                <small class="err-message" *ngIf="editForm.controls['contactPhone'].errors?.['maxlength']">Максимальное количество символов: 12.<br></small>
+            </div>
+            
+        </div>
+
         <div class="product-edit-form__product-price product-price _subform">
             <p class="product-price__subform-name subform-name">Цена<sup>*</sup></p>
             <input class="product-price__input _form-text" type="text" id="ProductPrice"  formControlName="productPrice" placeholder="0 ₽">
@@ -87,7 +102,7 @@
             </div>
             
         </div>
-        <button (click)="onSubmit()"  class="product-edit-form__button" [disabled]="editForm.invalid">Разместить объявление</button>
+        <button (click)="onSubmit()"  class="product-edit-form__button _button" [disabled]="editForm.invalid">Разместить объявление</button>
         </form>
 </div>
    

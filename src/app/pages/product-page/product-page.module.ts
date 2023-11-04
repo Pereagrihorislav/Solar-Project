@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GalleryComponent } from './components/gallery/gallery.component';
-import { DescriptionComponent } from './components/description/description.component';
+import { ProductPageComponent } from './product-page/product-page.component';
+
 
 
 
 @NgModule({
   declarations: [
-    GalleryComponent,
-    DescriptionComponent
+    ProductPageComponent
   ],
   imports: [
     CommonModule

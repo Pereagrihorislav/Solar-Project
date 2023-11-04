@@ -7,7 +7,7 @@
             <h4 class="product-card__name">{{ product.name }}</h4>
             <em class="product-card__price">{{ product.cost }} ₽</em>
             <span class="product-card__addres">{{ product.location }}</span>
-            <span class="product__card__time">{{ product.createdAt }}</span>
+            <span class="product__card__time">{{ formatDateTime(product.createdAt) }}</span>
         </div>
     </a>
 </article>

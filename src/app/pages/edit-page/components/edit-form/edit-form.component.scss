@@ -1,11 +1,7 @@
 
 .edit-form-container {
-        //display: flex;
-        //justify-content: flex-start;
-        //flex: 0 1 1456px;
         width: 1456px;
         padding: 0 0;
-       //margin: 0px auto;
         box-sizing: content-box;
    
 
@@ -16,11 +12,8 @@
         align-items: start;
         width: 100%;
         height: fit-content;
-        //border-radius: 8px;
-        //padding: 24px;
-        //margin: auto;
         font-family: "Montserrat", sans-serif;
-        //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+        
 
         ._subform {
             width: 100%;
@@ -122,6 +115,7 @@
         
             &:disabled {
                 background-color: #CBD5E1;
+                cursor: default;
             }
         
         }
@@ -214,10 +208,12 @@
                     background-color: #4C58C8;
                     border: none;
                     border-radius: 4px;
+                    cursor: pointer;
                 
                     &:hover {
                         background-color: #7480ED;
                         transition: all 0.3s ease;
+
                     }
                     
                     &:active {
@@ -226,6 +222,7 @@
                 
                     &:disabled {
                         background-color: #CBD5E1;
+                        cursor: default;
                     }
                 
                 }
@@ -239,7 +236,8 @@
         
         }
 
-        .product-price__input {
+        .product-price__input,
+        .contact-phone__input {
             width: 300px;
         }
 

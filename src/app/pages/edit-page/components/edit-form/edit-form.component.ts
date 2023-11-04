@@ -52,6 +52,7 @@ export class EditFormComponent  implements OnInit{
       productDescription:  ['', [Validators.required, Validators.maxLength(4096)]],
       address: ['', Validators.required],
       photo: this.imagesArray,
+      contactPhone: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(12), this.phoneNumberValidator()]],
       productPrice: ['', [Validators.required, Validators.maxLength(12), this.onlyNumValidator()]],
     })
   }
@@ -97,7 +98,7 @@ export class EditFormComponent  implements OnInit{
       formData.append('description', this.editForm.get('productDescription')!.value);
       formData.append('location', this.editForm.get('address')!.value);
       formData.append('cost', this.editForm.get('productPrice')!.value);
-      formData.append('phone', '+79181445680');
+      formData.append('phone', this.editForm.get('contactPhone')!.value);
       
       if(this.editForm.get('thirdLevelCategory')!.value) {
         formData.append('categoryId', this.editForm.get('thirdLevelCategory')!.value);
@@ -122,6 +123,17 @@ export class EditFormComponent  implements OnInit{
   onlyNumValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       return !Number(control.value) ? {onlyNum: {value: 'Недопустимое значение'}} : null;
+    };
+  }
+
+  phoneNumberValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const phoneNumberPattern = /^[0-9\+\(\)\-]+$/;
+  
+      if (!phoneNumberPattern.test(control.value)) {
+        return {phoneNumber: {value: 'Недопустимое значение'}};
+      }
+      return null;
     };
   }
 }
