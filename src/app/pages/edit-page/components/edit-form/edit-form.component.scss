@@ -117,7 +117,6 @@
                 background-color: #CBD5E1;
                 cursor: default;
             }
-        
         }
     
         .add-photos {
@@ -166,18 +165,18 @@
                         cursor: pointer;
                         transition: all 0.3s ease;
                     
-                    &:hover {
-                        background-color: #7480ED;
-                        transition: all 0.3s ease;
-                    }
+                        &:hover {
+                            background-color: #7480ED;
+                            transition: all 0.3s ease;
+                        }
                     
-                    &:active {
-                        background-color: #59D2BD;
-                    }
+                        &:active {
+                            background-color: #59D2BD;
+                        }
                 
-                    &:disabled {
-                        background-color: #CBD5E1;
-                    }
+                        &:disabled {
+                            background-color: #CBD5E1;
+                        }
                 
                     }
                 }

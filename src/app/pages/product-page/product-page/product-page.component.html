@@ -1,1 +1,28 @@
-<p>product-page works!</p>
+<div class="product-page__container" *ngIf="product">
+    <h3 class="product-page__product-title">{{ product.name }}</h3>
+    <div class="product-page__gallery-and-description gallery-and-description">
+        <div class="gallery-and-description__gallery gallery">
+            <div class="gallery__background">  
+                <img class="gallery__image-blur-bcg" [src]= "imageSrc(product.imagesIds[0])">
+                <img class="gallery__image" [src]= "imageSrc(product.imagesIds[0])" alt="product photo">
+            </div>
+        </div>
+        <div class="gallery-and-description__description description">
+            <h3 class="description__price">{{ product.cost }} ₽</h3>
+            <button class="description__show-contacts-button _button">Показать номер телефона</button>
+            <div class="description__address address">
+                <h4 class="address__title _title">Адрес</h4>
+                <p class="address__text _text">{{ product.location }}</p>
+            </div>
+            <div class="description__specification specification">
+                <h4 class="specification__title _title">Описание</h4>
+                <p class="specification__text _text">{{ product.description }}</p>
+            </div>
+            <div class="description__addtitional-info">
+                <p class="description__category">Категория товара: {{ product.category.name }}</p>
+                <p class="description__createdAt"> Добавлено {{ formatDateTime(product.created) }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="product-page__comments"></div>
+</div>

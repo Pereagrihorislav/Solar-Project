@@ -1,6 +1,7 @@
 .product-list__product-card {
     position: relative;
     font-family: "Montserrat", sans-serif;
+    cursor: pointer;
 
     .product-card__body{
         display:flex;

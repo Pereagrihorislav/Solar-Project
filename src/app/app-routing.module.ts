@@ -24,6 +24,7 @@ const routes : Routes = [
   },
   {
     path: 'product/:id',
+    
     loadChildren: () =>
       import('./pages/product-page/product-page.module').then((m) => m.ProductPageModule),
   },
@@ -37,7 +38,13 @@ const routes : Routes = [
     path: 'auth',
     loadChildren: () =>
       import('./pages/auth-page/auth-page.module').then((m) => m.AuthPageModule),
-  }
+  },
+  {
+    path: 'not-found',
+    title: '404',
+    loadChildren: () =>
+      import('./pages/not-found-page/not-found-page.module').then((m) => m.NotFoundPageModule),
+  },
 ];
 
 

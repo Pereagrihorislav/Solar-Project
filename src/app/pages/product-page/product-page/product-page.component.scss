@@ -1,0 +1,128 @@
+.product-page__container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-family: "Montserrat", sans-serif;
+
+    .product-page__product-title {
+        margin-bottom: 16px;
+        font-weight: 600;
+        font-size: 32px;
+        color: #1e293b;
+    }
+
+    .gallery-and-description {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .gallery {
+            .gallery__background {
+                position: relative;
+                width: 948px;
+                height: 534px;
+                overflow: hidden;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+
+                .gallery__image-blur-bcg {
+                    position: absolute;
+	                width: 120%;
+	                height: 120%;
+	                top: -10px;
+	                left: -10px;
+	                object-fit: cover;
+                    overflow: hidden;
+                    filter: blur(20px);
+                }
+
+                .gallery__image {
+                    position: absolute;
+	                width: 100%;
+	                height: 100%;
+	                top: 0;
+	                left: 0;
+	                object-fit: contain;
+                }
+            }
+        }
+
+        .description {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-left: 32px;
+            margin-right: 8px;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+
+           
+
+            .description__price {
+                margin-bottom: 24px;
+                font-weight: 600;
+                font-size: 36px;
+                color: #1e293b;
+            }
+
+            ._title {
+                font-weight: 600;
+                font-size: 24px;
+                color: #1e293b;
+                margin-bottom: 8px;
+            }
+
+            ._text {
+                font-size: 16px;
+                color: #64748B;
+                line-height: 146%;
+                margin-bottom: 32px;
+            }
+
+            .description__show-contacts-button {
+                align-items: center;
+                height: fit-content;
+                width: fit-content;
+                padding: 18px 36px;
+                margin-bottom: 48px;
+                font-size: 16px;
+                color: #ffffff;
+                background-color: #4C58C8;
+                border: none;
+                border-radius: 4px;
+        
+                &:hover {
+                    background-color: #7480ED;
+                    transition: all 0.3s ease;
+                }
+            
+                &:active {
+                    background-color: #59D2BD;
+                }
+        
+                &:disabled {
+                    background-color: #CBD5E1;
+                    cursor: default;
+                }
+        
+            }
+
+            .description__addtitional-info {
+                font-size: 14px;
+                color: #64748B;
+
+                .description__category {
+                    margin-bottom: 8px;
+                }
+                
+            }
+
+        }
+    }
+}
+

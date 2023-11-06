@@ -1,5 +1,5 @@
 <article class="product-list__product-card product-card">
-    <a href="#" class="product-card__body">
+    <a (click)="openProductPage(product.id)" class="product-card__body">
         <div class="product-card__image _ibg">
             <img [src]= "imageSrc(product.imagesIds[0])" alt="product photo">
         </div>

@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Product } from './product.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { format, parseISO } from 'date-fns';
+import { ProductService } from '../../services/product.service';
 
 
 @Component({
@@ -11,18 +12,22 @@ import { format, parseISO } from 'date-fns';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent {
+  public id: Observable<string> = this.activatedRoute.params.pipe(map((r: any) => r.id));
 
   @Input() product!: Product
-  
-  public id: Observable<string> = this.activatedRoute.params.pipe(map((r: any) => r.id)); 
-  constructor(private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.params.subscribe((r) => {})
-    this.activatedRoute.queryParams.subscribe((r) => {})
-  }
 
+  constructor(private activatedRoute: ActivatedRoute, private productService: ProductService, private router: Router) {
+    this.activatedRoute.params.subscribe();
+    this.activatedRoute.queryParams.subscribe();
+  }
+  
   formatDateTime(dateTimeString: string): string {
     const parsedDate = parseISO(dateTimeString); 
     return format(parsedDate, 'dd.MM.yyyy HH:mm'); 
+  }
+
+  openProductPage(id: string): void {
+      this.router.navigate([`product/${id}`]);
   }
 
   imageSrc(id:string) : string {
@@ -30,4 +35,5 @@ export class ProductComponent {
     let src = `http://194.87.237.48:5000/Images/${id}`;
     return src
   }
+
 }
