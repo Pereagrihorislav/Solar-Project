@@ -1,0 +1,18 @@
+<div class="gallery-and-description__gallery gallery">
+    <div class="gallery__background">  
+        <div *ngIf="product.imagesIds.length > 1">
+            <div (click)="goToPrevious()" class="leftArrow _arrows">❰</div>
+            <div (click)="goToNext()" class="rightArrow _arrows">❱</div>
+        </div>
+        <img class="gallery__image-blur-bcg" [src]= "imageSrc(product.imagesIds[currentIndex])">
+        <img class="gallery__image" [src]= "imageSrc(product.imagesIds[currentIndex])" alt="product photo">
+    </div>
+    <div class="gallery__preview-container" *ngIf="product.imagesIds.length > 1">
+        <div class="gallery__preview preview _ibg" *ngFor="let imageId of product.imagesIds; let slideIndex = index" 
+        [class.highlighted]="isHighlighted(slideIndex)"
+        (click)="goToSlide(slideIndex)">
+            <img class="preview__image" [src]= "imageSrc(imageId)" alt="product photo">
+        </div>
+    </div>
+    
+</div>

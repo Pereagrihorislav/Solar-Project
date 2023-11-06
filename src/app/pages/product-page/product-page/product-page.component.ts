@@ -33,11 +33,7 @@ export class ProductPageComponent implements OnInit {
     return format(parsedDate, 'dd.MM.yyyy HH:mm'); 
   }
 
-  imageSrc(id:string) : string {
-    if (!id) return '../../../../assets/img/pictures/noIMGS.png';
-    let src = `http://194.87.237.48:5000/Images/${id}`;
-    return src
-  }
+  
 
   ngOnDestroy(): void {
     if (this.productSubscription) {
