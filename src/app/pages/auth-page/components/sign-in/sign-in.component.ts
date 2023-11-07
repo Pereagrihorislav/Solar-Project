@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/pages/main-page/services/user.service';
 
 
 
@@ -18,33 +19,25 @@ export class SignInComponent implements OnInit {
   signInForm!: UntypedFormGroup;
   badGatewayStatus: boolean = false;
 
-  constructor(_http: HttpClient, private authServise: AuthService, private router: Router){
+  constructor(_http: HttpClient, private authService: AuthService, private userService: UserService, private router: Router){
     this.httpClient = _http;
   }
 
   ngOnInit(): void {
-    if (this.authServise.isAuthenticated()) this.router.navigate(['/main']);
+    if (this.authService.isAuthenticated()) this.router.navigate(['/main']);
 
     this.signInForm = new UntypedFormGroup ({
       login: new FormControl ('', [Validators.required, Validators.maxLength(24)]),
       password: new FormControl ('', [Validators.required, Validators.minLength(8), Validators.maxLength(24)]),
     });
 
-   /**Functional demo from last solar lecture. don't forget to delete***/ 
-    this.signInForm.valueChanges.subscribe((value) => {
-      console.log('signInForm.valueChanges: ', value);
-    });
-    this.signInForm.statusChanges.subscribe((value) => {
-      console.log('signInForm.statusChanges: ', value);
-    });
-
   }
 
   signIn() {
     if(this.signInForm.valid){
-      this.authServise.postToSignIn(this.signInForm.value).subscribe(
+      this.authService.postToSignIn(this.signInForm.value).subscribe(
         () => {
-        this.authServise.getCurrentUser().subscribe();
+        this.userService.getCurrentUserName().subscribe();
         this.router.navigate(['/main']);
         },
         (error) => {

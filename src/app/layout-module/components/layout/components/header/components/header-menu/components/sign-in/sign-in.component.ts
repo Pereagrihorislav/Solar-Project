@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/pages/auth-page/services/auth.service';
+import { UserService } from 'src/app/pages/main-page/services/user.service';
 
 
 @Component({
@@ -12,11 +13,11 @@ export class SignInComponent implements OnInit {
   authStatus: boolean = false;
   currentUser!: string | null;
 
-  constructor(private auth: AuthService, private router: Router){}
+  constructor(private authService: AuthService, private userService: UserService, private router: Router){}
 
   ngOnInit(): void {
-    this.auth.authStatus.subscribe(response => this.authStatus = response);
-    this.auth.currUsername.subscribe(response => {
+    this.authService.authStatus.subscribe(response => this.authStatus = response);
+    this.userService.currUsername.subscribe(response => {
       if(response) {
         this.currentUser = response;
       } else {
@@ -27,7 +28,7 @@ export class SignInComponent implements OnInit {
   }
 
   exit(): void {
-    this.auth.SignOut()
+    this.authService.SignOut()
     this.router.navigate(['/main'])
   }
 }

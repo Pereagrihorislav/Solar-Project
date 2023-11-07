@@ -1,0 +1,119 @@
+.settings-form-container {
+    width: 1456px;
+    padding: 0 0;
+    box-sizing: content-box;
+
+
+    .settings-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: start;
+        width: 100%;
+        height: fit-content;
+        font-family: "Montserrat", sans-serif;
+
+        .err-message {
+            font-size: 12px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: red;
+        }
+
+        .user-name__confirm-button {
+            align-items: center;
+            height: 36px;
+            width: fit-content;
+            padding: 8px 24px;
+            margin: 8px 0 24px 0;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: #4C58C8;
+            border: none;
+            border-radius: 4px;
+        
+            &:hover {
+                background-color: #7480ED;
+                transition: all 0.3s ease;
+            }
+            
+            &:active {
+                background-color: #59D2BD;
+            }
+        
+            &:disabled {
+                background-color: #CBD5E1;
+                cursor: default;
+            }
+        }
+
+        ._subform {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-bottom: 24px;
+
+            .control-name {
+                margin-top: 16px;
+            }
+        }
+
+        .settings-form__header {
+            margin-bottom: 16px;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            color: #1e293b;
+        }
+
+        ._form-text {
+            height: 36px;
+            width: 386px;
+            padding: 8px 12px;
+            margin-bottom: 4px;
+            margin-top: 8px;
+            font-size: 14px;
+            color: #64748B;
+            background-color: #ffffff;
+            border: 1px solid #CBD5E1;
+            border-radius: 4px;
+        }
+
+        .settings-form__delete {
+            & >* {
+                font-size: 14px;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+
+
+.modal__delete-button {
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+    padding: 8px 16px;
+    margin: 8px 0 8px 0;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: red;
+    border: none;
+    border-radius: 4px;
+    
+    &:active {
+        background-color: #FF7373;
+    }
+
+    &:disabled {
+        background-color: #CBD5E1;
+        cursor: default;
+    }
+}
+
+.modal__text {
+    margin-bottom: 16px;
+}

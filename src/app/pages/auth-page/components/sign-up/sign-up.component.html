@@ -1,12 +1,28 @@
 <div class="sign__container">
     <form [formGroup]="signUpForm" class="sign-form" novalidate>
         <h3 class="sign-form__header">Регистрация</h3>
-        <input class="sign-form__input" type="text" id="Login"  formControlName="login" placeholder="Логин">
-        <input class="sign-form__input" type="text" id="Name" formControlName="name" placeholder="Имя пользователя">
-        <input class="sign-form__input" type="text" id="Password" formControlName="password" placeholder="Пароль">
+        <input class="sign-form__input" type="text" id="Login"  formControlName="login" placeholder="Логин" autocomplete="off" autocomplete="no">
+        <div *ngIf="signUpForm.controls['password'].invalid && (signUpForm.controls['password'].touched || signUpForm.controls['password'].dirty)">
+            <small class="err-message" *ngIf="signUpForm.controls['login'].errors?.['required']">Обязательное поле</small>
+            <small class="err-message" *ngIf="signUpForm.controls['login'].errors?.['maxlength']">Максимальное количество символов: 24</small>
+        </div>
+        <input class="sign-form__input" type="text" id="Name" formControlName="name" placeholder="Имя пользователя" autocomplete="off" autocomplete="no">
+        <div *ngIf="signUpForm.controls['password'].invalid && (signUpForm.controls['password'].touched || signUpForm.controls['password'].dirty)">
+            <small class="err-message" *ngIf="signUpForm.controls['name'].errors?.['required']">Обязательное поле</small>
+            <small class="err-message" *ngIf="signUpForm.controls['name'].errors?.['maxlength']">Максимальное количество символов: 24</small>
+        </div>
+        <input class="sign-form__input" type="text" id="Password" formControlName="password" placeholder="Пароль" autocomplete="off" autocomplete="no">
+        <div *ngIf="signUpForm.controls['password'].invalid && (signUpForm.controls['password'].touched || signUpForm.controls['password'].dirty)">
+            <small class="err-message" *ngIf="signUpForm.controls['password'].errors?.['required']">Обязательное поле</small>
+            <small class="err-message" *ngIf="signUpForm.controls['password'].errors?.['minlength']">Минимальное количество символов: 8</small>
+            <small class="err-message" *ngIf="signUpForm.controls['password'].errors?.['maxlength']">Максимальное количество символов: 24</small>
+        </div>
         <button class="sign-form__button" (click)="signUp()">Зарегистрироваться</button>
         <a routerLink="/auth/sign-in" class="sign-form__switch">Уже есть аккаунт? Войти</a>
     </form>
 </div>
 
+<ng-template #successModalTemplate>
+    <div>Учетная запись успешно зарагистрирована!</div>
+</ng-template>
 

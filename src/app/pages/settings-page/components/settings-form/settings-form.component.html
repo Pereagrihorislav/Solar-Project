@@ -1,1 +1,60 @@
-<p>settings-form works!</p>
+<div class="settings-form-container _container">
+    
+    <form [formGroup]="userForm"  class="settings-form">
+        <h3 class="settings-form__header">Настройки</h3>
+
+        <div class="settings-form__user-name user-name _subform">
+            <p class="settings-form__control-name control-name">Изменить имя пользователя<sub>*</sub></p>
+            <input class="user-name__input _form-text" type="text" id="UserName"  formControlName="userName" 
+            placeholder="Введите новое имя пользователя">
+    
+            <div *ngIf="userForm.controls['userName'].invalid && (userForm.controls['userName'].touched || userForm.controls['userName'].dirty)">
+                <small class="err-message" *ngIf="userForm.controls['userName'].errors?.['required']">Обязательное поле</small>
+                <small class="err-message" *ngIf="userForm.controls['userName'].errors?.['maxlength']">Максимальное количество символов: 24</small>
+            </div>
+
+            <p class="settings-form__control-name control-name">Изменить Логин<sub>*</sub></p>
+            <input class="user-name__input _form-text" type="text" id="Login"  formControlName="login" 
+            placeholder="Введите новый логин">
+    
+            <div *ngIf="userForm.controls['login'].invalid && (userForm.controls['login'].touched || userForm.controls['login'].dirty)">
+                <small class="err-message" *ngIf="userForm.controls['login'].errors?.['required']">Обязательное поле</small>
+                <small class="err-message" *ngIf="userForm.controls['login'].errors?.['maxlength']">Максимальное количество символов: 24</small>
+            </div>
+        </div>
+            
+        <div  class="settings-form__change-password change-password _subform">
+            <h3 class="settings-form__header">Смена Пароля</h3>
+            <p class="settings-form__control-name control-name">Новый пароль<sub>*</sub></p>
+            <input class="change-password__input _form-text" type="text" id="Password"  formControlName="password" 
+            placeholder="Введите новый пароль">
+            <div *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].touched || userForm.controls['password'].dirty)">
+                <small class="err-message" *ngIf="userForm.controls['password'].errors?.['required']">Обязательное поле</small>
+                <small class="err-message" *ngIf="userForm.controls['password'].errors?.['minlength']">Минимальное количество символов: 8</small>
+                <small class="err-message" *ngIf="userForm.controls['password'].errors?.['maxlength']">Максимальное количество символов: 24</small>
+            </div>
+
+            <p class="settings-form__control-name control-name">Подтвердите пароль<sub>*</sub></p>
+            <input class="change-password-confirm__input _form-text" type="text" id="ConfirmPassword"  formControlName="confirmPassword" 
+            placeholder="Введите пароль повторно">
+            <div *ngIf="userForm.controls['confirmPassword'].invalid && (userForm.controls['confirmPassword'].touched || userForm.controls['confirmPassword'].dirty)">
+                <small class="err-message" *ngIf="userForm.controls['confirmPassword'].errors?.['required']">Обязательное поле</small>
+                <small class="err-message" *ngIf="userForm.hasError('passwordMatch')">Пароли не совпадают</small>
+            </div>
+
+            <button (click)="updateUser()" class="user-name__confirm-button _button" [disabled]="userForm.invalid">Сохранить изменения</button>
+        </div>
+        <div class="settings-form__delete">
+            <div (click)="openModal(deleteModalTemplate)" class="err-message _button">Удалить учетную запись</div>
+        </div>
+    </form>
+</div>
+
+<ng-template #successModalTemplate>
+    <div>Изменения сохранены!</div>
+</ng-template>
+
+<ng-template #deleteModalTemplate>
+    <div class="modal__text">Вы действительно хотите безвозвратно удалить учетную запись? Мы расстроимся.</div>
+    <button class="modal__delete-button _button">Удалить</button>
+</ng-template>
