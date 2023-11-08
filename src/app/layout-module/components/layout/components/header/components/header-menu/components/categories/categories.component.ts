@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../../../../services/categories.service';
 import { SearchService } from '../../../../services/search.service';
 import { ExtCategory, Category } from './categories.interface';
@@ -36,6 +36,12 @@ export class CategoriesComponent implements OnInit {
     }
   }
   
+  
+  close(): void {
+    this.menuIsVisible = false;
+    document.body.classList.remove('no-scroll')
+  }
+
 categorySearch(currentCategoryId: string, currentCategoryName: string){
   if(currentCategoryId) {
     this.searchService.changeSearchCategory(currentCategoryId, currentCategoryName)

@@ -1,4 +1,5 @@
 <h2>Мои объявления:</h2>
+<span class="result-count">У вас {{ userProducts?.length }} объявлений</span>
 <div class="app-product-list-users__container">
     <div class="app-product-list__users">
         <app-product *ngFor="let product of userProducts" [product]="product"></app-product>

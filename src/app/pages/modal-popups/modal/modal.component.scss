@@ -11,9 +11,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
   
-  .modal {
+.modal {
     z-index: 10;
     position: absolute;
     left: 50%;
@@ -65,6 +65,6 @@
     .modal-close {
         cursor: pointer;
     }
-  }
+}
   
   

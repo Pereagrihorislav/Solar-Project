@@ -2,17 +2,6 @@
     overflow: hidden;
   }
 
-.overlay {
-    position: fixed;
-    top: 108px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.6); 
-    z-index: 50; 
-}
-
-
 .categories-button {
     flex: 0 0 160px;
     display: flex;
@@ -47,7 +36,7 @@
 .header__categories-container {
     position: absolute;
     left: 0;
-    z-index: 49;
+   
     width: 100%;
     margin: 24px auto 0 auto;
     box-sizing: content-box;
@@ -63,6 +52,7 @@
         border-radius: 0 0 8px 8px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
         width: 100%;
+        z-index: 9;
         overflow: hidden;
 
         .menu-1st-layer {
@@ -195,7 +185,20 @@
     }
 }
 
-        
+.menu-backdrop {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 108px;
+    bottom: 0;
+    z-index: 8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}   
 
    
 

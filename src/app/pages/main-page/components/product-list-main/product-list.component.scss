@@ -1,13 +1,21 @@
 h2 {
-    margin-bottom: 36px;
+    margin-bottom: 16px;
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: 24px;
     color: #1e293b;
 }
+.result-count {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #64748B;
+}
 
 .app-product-list__container {
     justify-content: center;
+    margin-top: 32px;
+    
 
     .app-product-list {
         display: flex;

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 import { ProductExt } from 'src/app/pages/main-page/components/product/product.interface';
+import { ModalService } from 'src/app/pages/modal-popups/services/modal.service';
 
 
 
@@ -14,7 +15,7 @@ export class GallerySliderComponent {
   selectedSlide: number | null = 0;
 
   
-  constructor () {}
+  constructor (private modalService: ModalService) {}
   
   
   goToPrevious(): void {
@@ -32,12 +33,13 @@ export class GallerySliderComponent {
   goToSlide(slideIndex: number): void {
     this.currentIndex = slideIndex;
     if (this.selectedSlide === slideIndex) {
-      this.selectedSlide = null; // Снимаем подсветку при повторном клике
+      this.selectedSlide = null; 
     } else {
-      this.selectedSlide = slideIndex; // Выделяем новый элемент
+      this.selectedSlide = slideIndex; 
     }
 
   }
+
 
   isHighlighted(image: number): boolean {
     return this.selectedSlide === image;
