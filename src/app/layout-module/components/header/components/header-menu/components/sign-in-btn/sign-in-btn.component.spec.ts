@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SignInComponent } from './sign-in.component';
+import { SignInBtnComponent } from './sign-in-btn.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SignInComponent', () => {
-  let component: SignInComponent;
-  let fixture: ComponentFixture<SignInComponent>;
+  let component: SignInBtnComponent;
+  let fixture: ComponentFixture<SignInBtnComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      declarations: [SignInComponent]
+      declarations: [SignInBtnComponent]
     });
-    fixture = TestBed.createComponent(SignInComponent);
+    fixture = TestBed.createComponent(SignInBtnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

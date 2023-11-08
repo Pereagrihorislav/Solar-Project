@@ -21,6 +21,37 @@ h2 {
         flex-wrap: wrap;
         justify-content: flex-start;
 
+        .app-product-list__add-new-product {
+            position: relative;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 272px;
+            height: 392px;
+            border-radius: 8px;
+            font-family: "Montserrat", sans-serif;
+            background: linear-gradient(180deg, rgba(41,50,139,1) 5%, rgba(76,88,200,1) 35%, rgba(89,210,189,1) 100%);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+
+            img {
+                height: 56px;
+                width: 56px;
+                transition: all 0.3s ease-in-out;
+            }
+
+            &:hover {
+                box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.1);
+
+                img {
+                    transform: scale(1.2);
+                    transition: transform  0.3s;
+                }
+            }
+        }
+
         & >*{
             margin-bottom: 32px;
             position:relative;

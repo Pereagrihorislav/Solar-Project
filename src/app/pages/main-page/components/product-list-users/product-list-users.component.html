@@ -1,7 +1,11 @@
 <h2>Мои объявления:</h2>
-<span class="result-count">У вас {{ userProducts?.length }} объявлений</span>
+<span class="result-count" *ngIf="userProducts!.length > 0">У вас {{ userProducts!.length }} объявлений</span>
+<span class="result-count" *ngIf="userProducts!.length === 0">У вас пока нет объявлений</span>
 <div class="app-product-list-users__container">
     <div class="app-product-list__users">
+        <a routerLink="/edit/product" class="app-product-list__add-new-product add-new-product">
+            <img src="/assets/img/icons/add-product-icon.svg" alt="">
+        </a>
         <app-product *ngFor="let product of userProducts" [product]="product"></app-product>
     </div>
 </div>

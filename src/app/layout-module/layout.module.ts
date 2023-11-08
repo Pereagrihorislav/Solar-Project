@@ -8,7 +8,7 @@ import { HeaderMenuComponent } from './components/header/components/header-menu/
 import { CategoriesComponent } from './components/header/components/header-menu/components/categories/categories.component';
 import { SearchFormComponent } from './components/header/components/header-menu/components/search-form/search-form.component';
 import { AddProductComponent } from './components/header/components/header-menu/components/add-product/add-product.component';
-import { SignInComponent } from './components/header/components/header-menu/components/sign-in/sign-in.component';
+import { SignInBtnComponent } from './components/header/components/header-menu/components/sign-in-btn/sign-in-btn.component';
 import { FormsModule } from '@angular/forms';
 import { LayoutRoutingModule } from './layout-routing.module';
 
@@ -22,7 +22,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
     CategoriesComponent,
     SearchFormComponent,
     AddProductComponent,
-    SignInComponent,
+    SignInBtnComponent,
   ],
   imports: [
     CommonModule,

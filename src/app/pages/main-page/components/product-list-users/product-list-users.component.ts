@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class ProductListUsersComponent implements OnInit, OnDestroy {
-  userProducts: Array<Product> | undefined;
+  userProducts: Array<Product> = [];
   getUserSub$!: Subscription;
 
   constructor (private userService: UserService ) {}

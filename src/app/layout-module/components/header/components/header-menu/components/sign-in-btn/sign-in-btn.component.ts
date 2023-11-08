@@ -5,12 +5,12 @@ import { AuthService } from 'src/app/pages/services/auth-service/auth.service';
 import { UserService } from 'src/app/pages/services/user-service/user.service';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss', '../../../../header.component-adaptive.scss']
+  selector: 'app-sign-in-btn',
+  templateUrl: './sign-in-btn.component.html',
+  styleUrls: ['./sign-in-btn.component.scss', '../../../../header.component-adaptive.scss']
 })
 
-export class SignInComponent implements OnInit, OnDestroy {
+export class SignInBtnComponent implements OnInit, OnDestroy {
   authStatus: boolean = false;
   currentUser!: string | null;
   authStatusSubs$!: Subscription;
@@ -36,7 +36,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.authStatusSubs$.unsubscribe();
-    this.currUserNameSubs$.unsubscribe();
+    //this.authStatusSubs$.unsubscribe();  //These two subscriptions must remain active to display username in real time
+    //this.currUserNameSubs$.unsubscribe();
   }
 }

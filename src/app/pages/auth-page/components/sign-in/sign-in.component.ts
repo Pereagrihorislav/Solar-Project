@@ -48,6 +48,6 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.signInSubs$?.unsubscribe();
-    this.getUserSub$?.unsubscribe();
+    //this.getUserSub$?.unsubscribe(); //This subscription must remain active to display username in real time
   }
 }
