@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnDestroy} from '@angular/core';
 import {
   FormBuilder, 
   UntypedFormGroup, 
@@ -6,41 +6,42 @@ import {
   ValidationErrors,
   AbstractControl,
   ValidatorFn } from '@angular/forms';
-import { CategoriesService } from 'src/app/layout-module/components/layout/components/header/services/categories.service';
+import { CategoriesService } from 'src/app/layout-module/services/categories-service/categories.service';
 import { OnInit } from '@angular/core';
-import { Category } from '../../edit.interface';
-import { ProductService } from 'src/app/pages/main-page/services/product.service';
-
-
+import { Category } from 'src/app/layout-module/interfaces/categories.interface';
+import { ProductService } from 'src/app/pages/services/product-service/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-form',
   templateUrl: './edit-form.component.html',
   styleUrls: ['./edit-form.component.scss']
 })
-export class EditFormComponent  implements OnInit{
+
+export class EditFormComponent  implements OnInit, OnDestroy {
   editForm!: UntypedFormGroup;
   categoriesList!: Array<Category>;
   firstLevelCategories!: Array<Category>;
   secondLevelCategories!:  Array<Category> ;
   thirdLevelCategories!: Array<Category>;
   imagesArray: { url: string, file: File }[] = [];
+  getCategoriesSub$!: Subscription;
+  newProductSub$!: Subscription;
   
-  
-  constructor(private categoriesService : CategoriesService, 
-    private formBuilder : FormBuilder, private productService: ProductService ){
-    this.buildForm()
+  constructor(private categoriesService: CategoriesService, 
+    private formBuilder: FormBuilder, private productService: ProductService ){
+    this.buildForm();
   }
 
   ngOnInit(): void {
-    this.categoriesService.getAllCategories().subscribe((response) => {
+    this.getCategoriesSub$ = this.categoriesService.getAllCategories().subscribe((response) => {
       this.categoriesList = response;
       this.firstLevelCategories = this.categoriesList.filter(category => category.parentId === this.categoriesService.getDefaultcategoryId()
        && category.name !== 'Anything' && category.name !== 'Default');
     })
   }
 
-  private buildForm() {
+  private buildForm(): void {
     this.editForm = this.formBuilder.group({
       firstLevelCategory: ['', Validators.required],
       secondLevelCategory:  ['', Validators.required],
@@ -54,20 +55,20 @@ export class EditFormComponent  implements OnInit{
     })
   }
   
-  onFirstLevelCategoryChange() {
+  onFirstLevelCategoryChange(): void {
     const selectedCategoryId = this.editForm.get('firstLevelCategory')?.value;
     this.secondLevelCategories = this.categoriesList.filter(category => category.parentId === selectedCategoryId);
     this.editForm.get('secondLevelCategory')?.setValue(null);
     this.editForm.get('thirdLevelCategory')?.setValue(null);
   }
   
-  onSecondLevelCategoryChange() {
+  onSecondLevelCategoryChange(): void {
     const selectedCategoryId = this.editForm.get('secondLevelCategory')?.value;
     this.thirdLevelCategories = this.categoriesList.filter(category => category.parentId === selectedCategoryId);
     this.editForm.get('thirdLevelCategory')?.setValue(null);
   }
 
-  onFileChange(event: any) {
+  onFileChange(event: any): void {
     if (event.target.files && event.target.files[0]) {
       for (const file of event.target.files) {
         const reader = new FileReader();
@@ -83,11 +84,11 @@ export class EditFormComponent  implements OnInit{
     }
   }
 
-  removeImage(index: number) {
+  removeImage(index: number): void {
     this.imagesArray.splice(index, 1);
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.editForm.valid) {
       let files = (<HTMLInputElement>document.getElementById('Photo')).files;
       const formData = new FormData();
@@ -100,12 +101,12 @@ export class EditFormComponent  implements OnInit{
       if(this.editForm.get('thirdLevelCategory')!.value) {
         formData.append('categoryId', this.editForm.get('thirdLevelCategory')!.value);
       } else {
-        formData.append('categoryId', this.editForm.get('secondLevelCategory')!.value)
+        formData.append('categoryId', this.editForm.get('secondLevelCategory')!.value);
       }
 
       if(files) {
         for(let i = 0; i < this.editForm.get('photo')!.value.length!; i++) {
-          formData.append('Images', files[i]!)
+          formData.append('Images', files[i]!);
         }
       }
       
@@ -113,7 +114,7 @@ export class EditFormComponent  implements OnInit{
         console.log(key, value);
       });
 
-     this.productService.createNewProduct(formData).subscribe();
+     this.newProductSub$ = this.productService.createNewProduct(formData).subscribe();
     }
   }
 
@@ -126,12 +127,16 @@ export class EditFormComponent  implements OnInit{
   phoneNumberValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const phoneNumberPattern = /^[0-9\+\(\)\-]+$/;
-  
       if (!phoneNumberPattern.test(control.value)) {
         return {phoneNumber: {value: 'Недопустимое значение'}};
       }
       return null;
     };
+  }
+
+  ngOnDestroy(): void {
+    this.getCategoriesSub$?.unsubscribe();
+    this.newProductSub$?.unsubscribe();
   }
 }
 

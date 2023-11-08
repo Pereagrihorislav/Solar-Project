@@ -1,26 +1,32 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormControl, FormGroup, UntypedFormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
+import { Component, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../services/auth-service/auth.service';
 import { OnInit } from '@angular/core';
 import { ModalService } from 'src/app/pages/modal-popups/services/modal.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['../sign-form-style.scss']
 })
-export class SignUpComponent implements OnInit {
-  @ViewChild('successModalTemplate') successModalTemplate!: TemplateRef<any>;
-  httpClient : HttpClient;
-  signUpForm!: UntypedFormGroup;
- 
 
-  constructor(_http: HttpClient, private authServise: AuthService, private modalService: ModalService){
-    this.httpClient = _http;
+export class SignUpComponent implements OnInit, OnDestroy {
+  @ViewChild('successModalTemplate') successModalTemplate!: TemplateRef<any>;
+  signUpForm!: UntypedFormGroup;
+  signUpSub$!: Subscription;
+  openModalSub$!: Subscription;
+ 
+  constructor(private authService: AuthService, private modalService: ModalService, private router: Router){
+    this.buildForm();
   }
 
   ngOnInit(): void {
+    if (this.authService.isAuthenticated()) this.router.navigate(['/main']);
+  }
+
+  private buildForm(): void {
     this.signUpForm = new UntypedFormGroup ({
       name: new FormControl ('', [Validators.required, Validators.maxLength(24)]),
       login: new FormControl ('', [Validators.required, Validators.maxLength(24)]),
@@ -28,21 +34,25 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  signUp() {
+  signUp(): void {
     if(this.signUpForm.valid){
-      this.authServise.postToSignUp(this.signUpForm.value).subscribe((response) => {
-        this.openModal(this.successModalTemplate)
-        console.log(response);
+      this.signUpSub$ = this.authService.postToSignUp(this.signUpForm.value).subscribe(response => {
+        if (response) {
+          this.openModal(this.successModalTemplate);
+          this.router.navigate(['/sign-in']);
+        }
       });
     }
   }
 
-  openModal(modalTemplate: TemplateRef<any>) {
-    this.modalService
+  openModal(modalTemplate: TemplateRef<any>): void {
+    this.openModalSub$ = this.modalService
       .open(modalTemplate, { size: 'lg', title: 'Сообщение:' })
-      .subscribe((action) => {
-        console.log('modalAction', action);
-      });
+      .subscribe();
   }
 
+  ngOnDestroy(): void {
+    this.signUpSub$?.unsubscribe();
+    this.openModalSub$?.unsubscribe();
+  }
 }

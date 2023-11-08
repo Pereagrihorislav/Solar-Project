@@ -1,7 +1,7 @@
 <div class="sign__container">
     <form [formGroup]="signInForm" class="sign-form" novalidate>
         <h3 class="sign-form__header">Вход</h3>
-        <input class="sign-form__input" type="text" id="Login" formControlName="login" placeholder="Логин" autocomplete="off" autocomplete="no">
+        <input class="sign-form__input" type="text" id="Login" formControlName="login" placeholder="Логин">
         <input class="sign-form__input" type="text" id="Password" formControlName="password" placeholder="Пароль" autocomplete="off" autocomplete="no">
         <small class="err-message" *ngIf="badGatewayStatus">Неверный логин или пароль</small>
         <button class="sign-form__button" (click)="signIn()">Войти</button>

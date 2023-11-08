@@ -5,10 +5,6 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AuthPageRoutingModule } from './auth-page-routing.module';
 import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
-
-
-
 @NgModule({
   declarations: [
     SignInComponent,

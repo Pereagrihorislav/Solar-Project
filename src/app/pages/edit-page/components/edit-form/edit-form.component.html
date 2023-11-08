@@ -38,7 +38,6 @@
             <p class="product-name__subform-name subform-name">Название объявления<sup>*</sup></p>
             <input class="product-name__input _form-text" type="text" id="ProductName"  formControlName="productName" 
             placeholder="Что хотите продать?" autocomplete="off" autocomplete="no">
-    
             <div *ngIf="editForm.controls['productName'].invalid && (editForm.controls['productName'].touched || editForm.controls['productName'].dirty)">
                 <small class="err-message" *ngIf="editForm.controls['productName'].errors?.['required']">Обязательное поле</small>
                 <small class="err-message" *ngIf="editForm.controls['productName'].errors?.['maxlength']">Максимальное количество символов: 50.</small>
@@ -50,7 +49,6 @@
             <p class="product-description__subform-name subform-name">Описание объявления<sup>*</sup></p>
             <textarea class="product-description__textarea _form-textarea" rows="5" id="ProductDescription"  formControlName="productDescription" 
             placeholder="Расскажите подробнее о товаре или услуге" autocomplete="off" autocomplete="no"></textarea>
-    
             <div *ngIf="editForm.controls['productDescription'].invalid && (editForm.controls['productDescription'].touched || editForm.controls['productDescription'].dirty)">
                 <small class="err-message" *ngIf="editForm.controls['productDescription'].errors?.['required']">Обязательное поле</small>
                 <small class="err-message" *ngIf="editForm.controls['productName'].errors?.['maxlength']">Максимальное количество символов: 4096.</small>

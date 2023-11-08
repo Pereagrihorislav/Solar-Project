@@ -4,11 +4,9 @@ import { EditPageRoutingModule } from './edit-page-routing.module';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
-
 @NgModule({
   declarations: [
-    EditFormComponent
+    EditFormComponent,
   ],
   imports: [
     CommonModule,

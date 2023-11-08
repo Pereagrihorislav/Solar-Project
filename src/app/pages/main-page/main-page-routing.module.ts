@@ -5,7 +5,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductListSearchComponent } from './components/product-list-search/product-list-search.component';
 import { ProductListUsersComponent } from './components/product-list-users/product-list-users.component';
 import { SidebarMenuComponent } from './components/product-list-search/components/sidebar-menu/sidebar-menu.component';
-import { AuthService } from '../auth-page/services/auth.service';
+import { AuthService } from '../services/auth-service/auth.service';
 
 const routes: Routes = [
   {

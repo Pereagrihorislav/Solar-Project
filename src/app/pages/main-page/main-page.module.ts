@@ -7,8 +7,6 @@ import { MainPageRoutingModule } from './main-page-routing.module';
 import { ProductListSearchComponent } from './components/product-list-search/product-list-search.component';
 import { ProductListUsersComponent } from './components/product-list-users/product-list-users.component';
 
-
-
 @NgModule({
   declarations: [
     ProductComponent,

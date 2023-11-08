@@ -1,48 +1,46 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { EMPTY, Subscription, switchMap, tap } from 'rxjs';
-import { SearchService } from 'src/app/layout-module/components/layout/components/header/services/search.service';
-import { Product } from '../product/product.interface';
+import { SearchService } from 'src/app/layout-module/services/search-service/search.service';
+import { Product } from '../../../interfaces/product.interface';
 
 @Component({
   selector: 'app-product-list-search',
   templateUrl: './product-list-search.component.html',
   styleUrls: ['./product-list-search.component.scss']
 })
+
 export class ProductListSearchComponent implements OnInit, OnDestroy {
-
-  currentSearchInput: string = ''
-  private refreshBySearch!: Subscription;
+  currentSearchInput: string = '';
   products: Array<Product> | undefined;
+  refreshBySearchSub$!: Subscription;
+  searchHotReloadSub$!: Subscription;
+  searchSub$!: Subscription;
 
- constructor(private router: Router, _http: HttpClient, private searchService: SearchService){
-  }
+ constructor(private searchService: SearchService){}
 
   displaySearchResults(): void {
-    this.searchService.searchInput.subscribe((searchFormInput) => {
+    this.searchHotReloadSub$ = this.searchService.searchInput$.subscribe((searchFormInput) => {
       this.currentSearchInput = searchFormInput;
     });
 
-    this.searchService.search(this.currentSearchInput).subscribe((response) => {
-      console.log(response);
+    this.searchSub$ = this.searchService.search(this.currentSearchInput).subscribe((response) => {
       this.products = response;
     });
-
   }
 
   ngOnInit(): void {
-   this.refreshBySearch = this.searchService.searchInput
+   this.refreshBySearchSub$ = this.searchService.searchInput$
    .pipe(
     switchMap(() => {
       this.displaySearchResults();
       return EMPTY;
     })
-   ).subscribe()
-
+   ).subscribe();
   }
 
   ngOnDestroy(): void {
-    this.refreshBySearch.unsubscribe;
+    this.searchSub$?.unsubscribe();
+    this.refreshBySearchSub$?.unsubscribe();
+    this.searchHotReloadSub$?.unsubscribe();
   }
 }

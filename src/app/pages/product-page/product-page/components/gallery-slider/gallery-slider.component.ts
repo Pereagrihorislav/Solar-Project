@@ -1,8 +1,6 @@
-import { Component, Input, TemplateRef } from '@angular/core';
-import { ProductExt } from 'src/app/pages/main-page/components/product/product.interface';
-import { ModalService } from 'src/app/pages/modal-popups/services/modal.service';
-
-
+import { Component, Input } from '@angular/core';
+import { ProductExt } from 'src/app/pages/interfaces/product.interface';
+import { ProductService } from 'src/app/pages/services/product-service/product.service';
 
 @Component({
   selector: 'app-gallery-slider',
@@ -14,9 +12,7 @@ export class GallerySliderComponent {
   currentIndex: number = 0;
   selectedSlide: number | null = 0;
 
-  
-  constructor (private modalService: ModalService) {}
-  
+  constructor (private productService: ProductService) {}
   
   goToPrevious(): void {
     const isFirstSlide = this.currentIndex === 0;
@@ -37,18 +33,13 @@ export class GallerySliderComponent {
     } else {
       this.selectedSlide = slideIndex; 
     }
-
   }
-
 
   isHighlighted(image: number): boolean {
     return this.selectedSlide === image;
   }
 
   imageSrc(id:string) : string {
-    if (!id) return '../../../../assets/img/pictures/noIMGS.png';
-    let src = `http://194.87.237.48:5000/Images/${id}`;
-    return src
+   return this.productService.getImageSrc(id);
   }
-
 }

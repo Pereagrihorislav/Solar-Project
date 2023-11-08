@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { User } from 'src/app/pages/auth-page/interfaces/user.interface';
-import { UserService } from 'src/app/pages/main-page/services/user.service';
-import { SignUp } from 'src/app/pages/auth-page/interfaces/auth.interfaces';
+import { User } from 'src/app/pages/interfaces/user.interface';
+import { UserService } from 'src/app/pages/services/user-service/user.service';
+import { SignUp } from 'src/app/pages/interfaces/auth.interfaces';
 import { ModalService } from 'src/app/pages/modal-popups/services/modal.service';
-import { AuthService } from 'src/app/pages/auth-page/services/auth.service';
+import { AuthService } from 'src/app/pages/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-settings-form',

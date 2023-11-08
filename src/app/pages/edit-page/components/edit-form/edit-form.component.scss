@@ -4,7 +4,6 @@
         padding: 0 0;
         box-sizing: content-box;
    
-
     .product-edit-form {
         display: flex;
         flex-direction: column;
@@ -14,7 +13,6 @@
         height: fit-content;
         font-family: "Montserrat", sans-serif;
         
-
         ._subform {
             width: 100%;
         }
@@ -78,8 +76,6 @@
                 border-radius: 4px;
                 cursor: pointer;
 
-                
-            
                 option {
                     font-size: 14px;
                     color: #64748B;
@@ -87,9 +83,7 @@
                     cursor: pointer;
                     
                 }
-            
             }
-        
         }
     
         .product-edit-form__button {
@@ -126,7 +120,6 @@
             padding: 4px 0;
             height: max-content;
            
-
             .image-preview-list {
                 display:flex;
                 justify-content: flex-start;
@@ -136,14 +129,12 @@
                 border-radius: 8px;
                 background-color: #f0f0f0;
 
-
                 .image-preview {
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-start;
                     width: fit-content;
                     padding: 8px;
-                    
                     
                     img {
                         max-width: 100px;
@@ -182,14 +173,11 @@
                 }
             }
         
-            
-        
             .add-photos__add {
                 display: none;
             }
         
             .label-and-inscription {
-                
                 padding: 16px;
                 margin: 14px 0;
                 border-radius: 8px;
@@ -212,7 +200,6 @@
                     &:hover {
                         background-color: #7480ED;
                         transition: all 0.3s ease;
-
                     }
                     
                     &:active {
@@ -223,16 +210,12 @@
                         background-color: #CBD5E1;
                         cursor: default;
                     }
-                
                 }
 
                 .inscription {
                     font-size: 14px;
                 }
             }
-            
-        
-        
         }
 
         .product-price__input,

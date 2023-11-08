@@ -15,9 +15,11 @@
 	margin: 0px auto;
 	box-sizing: content-box;
 }
+
 ._ibg {
 	position: relative;
 }
+
 ._ibg img {
 	position: absolute;
 	width: 100%;
@@ -201,7 +203,6 @@ q {
     }
 }
 
-
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -215,7 +216,6 @@ table {
 a, a:hover, a:visited, a:active, a:focus{
 	outline: none;
 }
-
 
 input, input:focus, 
 textarea, textarea:focus,

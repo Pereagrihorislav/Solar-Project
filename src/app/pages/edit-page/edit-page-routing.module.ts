@@ -1,8 +1,7 @@
 import { NgModule, inject } from '@angular/core';
 import { Router, RouterModule, Routes, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
-
-import { AuthService } from '../auth-page/services/auth.service';
+import { AuthService } from '../services/auth-service/auth.service';
 
 const routes: Routes = [
   {
@@ -13,8 +12,6 @@ const routes: Routes = [
     component: EditFormComponent, 
   },
 ];
-
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

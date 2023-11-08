@@ -1,0 +1,50 @@
+@media (max-width: 1209px) {
+    .categories-button {
+        flex: 0 0 44px;
+        
+        .categories-button__image {
+            margin-right: 0;
+        }
+
+        .categories-button__text {
+            display: none;
+        }
+    }
+
+    .add-product-button {
+        flex: 0 0 44px;
+
+        .add-product-button__text {
+            display: none;
+        }
+    }
+
+    .sign-in-button {
+        flex: 0 0 20px;
+
+        .sign-in-button__image {
+            margin-right: 0;
+        }
+
+        .sign-in-button__text {
+            display: none;
+        }
+    }
+
+    .search-button {
+        .search-button__text {
+            display: none;
+        }
+    }
+
+    .header__logo {
+        margin-right: 24px;
+    }
+}
+
+@media (max-width: 912px) {
+    .header__logo  {
+        display: none;
+    }
+}
+

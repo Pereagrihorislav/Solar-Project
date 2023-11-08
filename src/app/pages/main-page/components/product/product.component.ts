@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { Product } from './product.interface';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { Product } from '../../../interfaces/product.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { format, parseISO } from 'date-fns';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../services/product-service/product.service';
 
 
 @Component({
@@ -11,14 +11,17 @@ import { ProductService } from '../../services/product.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent {
-  public id: Observable<string> = this.activatedRoute.params.pipe(map((r: any) => r.id));
 
-  @Input() product!: Product
+export class ProductComponent implements OnDestroy {
+  id: Observable<string> = this.activatedRoute.params.pipe(map((r: any) => r.id));
+  routeParamsSub$!: Subscription;
+  routeQueryParamsSub$!: Subscription;
+
+  @Input() product!: Product;
 
   constructor(private activatedRoute: ActivatedRoute, private productService: ProductService, private router: Router) {
-    this.activatedRoute.params.subscribe();
-    this.activatedRoute.queryParams.subscribe();
+    this.routeParamsSub$ = this.activatedRoute.params.subscribe();
+    this.routeQueryParamsSub$ = this.activatedRoute.queryParams.subscribe();
   }
   
   formatDateTime(dateTimeString: string): string {
@@ -30,10 +33,13 @@ export class ProductComponent {
       this.router.navigate([`product/${id}`]);
   }
 
-  imageSrc(id:string) : string {
-    if (!id) return '../../../../assets/img/pictures/noIMGS.png';
-    let src = `http://194.87.237.48:5000/Images/${id}`;
-    return src
+  imageSrc(id: string): string {
+    return this.productService.getImageSrc(id);
+  }
+
+  ngOnDestroy(): void {
+    this.routeParamsSub$?.unsubscribe();
+    this.routeQueryParamsSub$?.unsubscribe();
   }
 
 }
