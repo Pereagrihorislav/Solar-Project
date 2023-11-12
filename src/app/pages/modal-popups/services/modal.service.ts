@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import {
   ComponentFactoryResolver,
+  ElementRef,
   Inject,
   Injectable,
   Injector,
@@ -15,6 +16,8 @@ import { ModalComponent } from '../modal/modal.component';
 export class ModalService {
 
   private modalNotifier?: Subject<string>;
+  private modalComponent?: ModalComponent;
+
   constructor(
     private resolver: ComponentFactoryResolver,
     private injector: Injector,
@@ -43,9 +46,12 @@ export class ModalService {
     return this.modalNotifier?.asObservable();
   }
 
+  
+  
   closeModal() {
     this.modalNotifier?.complete();
   }
+
 
   submitModal() {
     this.modalNotifier?.next('confirm');

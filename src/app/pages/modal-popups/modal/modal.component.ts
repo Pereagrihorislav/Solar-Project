@@ -3,6 +3,7 @@ import { Component,
   EventEmitter,
   Input,
   Output } from '@angular/core';
+//import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-modal',
@@ -25,6 +26,8 @@ export class ModalComponent {
     this.elementRef.nativeElement.remove();
     this.closeEvent.emit();
   }
+
+ 
 
   submit(): void {
     this.elementRef.nativeElement.remove();

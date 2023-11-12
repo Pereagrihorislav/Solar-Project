@@ -5,6 +5,7 @@ import { UserService } from 'src/app/pages/services/user-service/user.service';
 import { SignUp } from 'src/app/pages/interfaces/auth.interfaces';
 import { ModalService } from 'src/app/pages/modal-popups/services/modal.service';
 import { AuthService } from 'src/app/pages/services/auth-service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings-form',
@@ -17,8 +18,11 @@ export class SettingsFormComponent implements OnInit{
   updateUserData: SignUp = {name: '', login: '', password: ''};
   currentUser!: User;
 
-  constructor(private formBuilder : FormBuilder, private userService: UserService, 
-    private modalService: ModalService, private authService: AuthService  ) {
+  constructor(private formBuilder: FormBuilder, 
+    private userService: UserService, 
+    private modalService: ModalService, 
+    private authService: AuthService,
+    private router: Router) {
     this.buildUserForm();
     
   }
@@ -65,7 +69,8 @@ export class SettingsFormComponent implements OnInit{
     if(this.currentUser){
       this.userService.deleteCurrentUser(id).subscribe((respoonse) => {
         if(respoonse){
-          this.authService.SignOut()
+          this.router.navigate(['/main']);
+          this.authService.SignOut();
         }
       })
     }

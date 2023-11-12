@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription, map } from 'rxjs';
 import { format, parseISO } from 'date-fns';
 import { ProductService } from '../../../services/product-service/product.service';
+import { ImagesService } from 'src/app/pages/services/images-service/images.service';
 
 
 @Component({
@@ -19,7 +20,9 @@ export class ProductComponent implements OnDestroy {
 
   @Input() product!: Product;
 
-  constructor(private activatedRoute: ActivatedRoute, private productService: ProductService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute,
+     private productService: ProductService, private imagesService: ImagesService, private router: Router) {
+
     this.routeParamsSub$ = this.activatedRoute.params.subscribe();
     this.routeQueryParamsSub$ = this.activatedRoute.queryParams.subscribe();
   }
@@ -34,7 +37,7 @@ export class ProductComponent implements OnDestroy {
   }
 
   imageSrc(id: string): string {
-    return this.productService.getImageSrc(id);
+    return this.imagesService.getImageSrc(id);
   }
 
   ngOnDestroy(): void {

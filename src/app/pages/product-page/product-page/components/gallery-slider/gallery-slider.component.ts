@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ProductExt } from 'src/app/pages/interfaces/product.interface';
-import { ProductService } from 'src/app/pages/services/product-service/product.service';
+import { ImagesService } from 'src/app/pages/services/images-service/images.service';
+
 
 @Component({
   selector: 'app-gallery-slider',
@@ -12,7 +13,7 @@ export class GallerySliderComponent {
   currentIndex: number = 0;
   selectedSlide: number | null = 0;
 
-  constructor (private productService: ProductService) {}
+  constructor (private imagesService: ImagesService) {}
   
   goToPrevious(): void {
     const isFirstSlide = this.currentIndex === 0;
@@ -40,6 +41,6 @@ export class GallerySliderComponent {
   }
 
   imageSrc(id:string) : string {
-   return this.productService.getImageSrc(id);
+   return this.imagesService.getImageSrc(id);
   }
 }

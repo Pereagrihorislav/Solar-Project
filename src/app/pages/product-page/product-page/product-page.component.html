@@ -17,6 +17,7 @@
                 <p class="description__category">Категория товара: {{ product.category.name }}</p>
                 <p class="description__createdAt">Добавлено {{ formatDateTime(product.created) }}</p>
             </div>
+            <button (click)="editProduct()" class="description__edit-poduct-button _button" *ngIf="isEditable === true">Редактировать</button>
         </div>
     </div>
     <div class="product-page__comments"></div>

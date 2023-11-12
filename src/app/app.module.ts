@@ -7,16 +7,17 @@ import { LayoutModule } from './layout-module/layout.module';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
-   
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     LayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     {

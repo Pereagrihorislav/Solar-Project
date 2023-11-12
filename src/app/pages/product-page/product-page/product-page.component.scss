@@ -29,11 +29,37 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
 
+            .description__edit-poduct-button {
+                align-items: center;
+                height: fit-content;
+                width: fit-content;
+                padding: 14px 18px;
+                margin-top: 24px;
+                font-size: 14px;
+                color: #4C58C8;
+                background-color: transparent;
+                border: 1px solid #4C58C8;
+                border-radius: 4px;
+        
+                &:hover {
+                    color: #59D2BD;
+                    border:  1px solid #59D2BD;
+                    transition: all 0.3s ease;
+                }
+            
+                &:active {
+                    color: #59D2BD;
+                    border:  1px solid #59D2BD;
+                }
+        
+            }
+
             .description__price {
                 margin-bottom: 24px;
                 font-weight: 600;
                 font-size: 32px;
                 color: #1e293b;
+
             }
 
             ._title {

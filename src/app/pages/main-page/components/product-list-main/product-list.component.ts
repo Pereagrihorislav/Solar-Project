@@ -11,6 +11,10 @@ import { Subscription } from 'rxjs';
 
 export class ProductListComponent implements OnInit, OnDestroy{
   products: Array<Product> | undefined;
+  visibleProducts: Array<Product> | undefined;
+  currentPage = 1; // текущая страница данных
+  itemsPerPage = 50; // количество элементов на странице
+  isLoading = false; // флаг, чтобы избежать многократных запросов
   searchSub$!: Subscription;
 
   constructor(private searchService: SearchService) {}
@@ -18,7 +22,22 @@ export class ProductListComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.searchSub$ = this.searchService.search('').subscribe(response => {
       this.products = response;
+      if (response) {
+        this.loadVisibleProducts();
+      }
     })
+  }
+
+  loadVisibleProducts() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.visibleProducts = this.products?.slice(startIndex, endIndex);
+  }
+
+  onPageChange() {
+    console.log('SCROLL')
+    this.currentPage++;
+    this.loadVisibleProducts();
   }
 
   ngOnDestroy(): void {

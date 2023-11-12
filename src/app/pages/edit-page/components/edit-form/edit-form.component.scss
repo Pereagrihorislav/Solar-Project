@@ -85,33 +85,101 @@
                 }
             }
         }
-    
-        .product-edit-form__button {
-            align-items: center;
-            height: 36px;
-            width: fit-content;
-            padding: 8px 24px;
-            margin: 14px 0 28px 0;
-            font-size: 14px;
-            color: #ffffff;
-            background-color: #4C58C8;
-            border: none;
-            border-radius: 4px;
         
-            &:hover {
-                background-color: #7480ED;
-                transition: all 0.3s ease;
+        .product-edit-form__buttons {
+            margin: 14px 0 28px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+           
+
+            .product-edit-form__submit-button {
+                align-items: center;
+                height: fit-content;
+                width: fit-content;
+                padding: 16px 36px;
+                
+                font-size: 14px;
+                color: #ffffff;
+                background-color: #4C58C8;
+                border: none;
+                border-radius: 4px;
+            
+                &:hover {
+                    background-color: #7480ED;
+                    transition: all 0.3s ease;
+                }
+                
+                &:active {
+                    background-color: #59D2BD;
+                }
+            
+                &:disabled {
+                    background-color: #CBD5E1;
+                    cursor: default;
+                }
             }
             
-            &:active {
-                background-color: #59D2BD;
-            }
+            .edit-buttons {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-top: 24px;
+
+                .edit-buttons__reset-button {
+                    align-items: center;
+                    height: fit-content;
+                    width: fit-content;
+                    padding: 8px 16px;
+                    margin-right: 16px;
+                    font-size: 14px;
+                    color: #4C58C8;
+                    background-color: transparent;
+                    border: 1px solid #4C58C8;
+                    border-radius: 4px;
         
-            &:disabled {
-                background-color: #CBD5E1;
-                cursor: default;
+                    &:hover {
+                        color: #59D2BD;
+                        border:  1px solid #59D2BD;
+                        transition: all 0.3s ease;
+                    }
+            
+                    &:active {
+                        color: #59D2BD;
+                        border:  1px solid #59D2BD;
+                    }
+                }
+
+                .edit-buttons__delete-button {
+                    align-items: center;
+                    height: 36px;
+                    width: 36px;
+                    padding: 4px 4px;
+                    
+                    font-size: 14px;
+                    color: #ffffff;
+                    background-color: #ba1a1a;
+                    border: none;
+                    border-radius: 4px;
+    
+                   
+                    
+                    &:active {
+                        background-color: #FF7373;
+                    }
+                
+                    &:disabled {
+                        background-color: #CBD5E1;
+                        cursor: default;
+                    }
+                }
             }
+
+            
         }
+
+       
     
         .add-photos {
             display: flex;
@@ -232,6 +300,30 @@
     }
 }
 
+.modal__delete-button {
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+    padding: 8px 16px;
+    margin: 8px 0 8px 0;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #ba1a1a;
+    border: none;
+    border-radius: 4px;
+    
+    &:active {
+        background-color: #FF7373;
+    }
 
+    &:disabled {
+        background-color: #CBD5E1;
+        cursor: default;
+    }
+}
+
+.modal__text {
+    margin-bottom: 16px;
+}
 
 
