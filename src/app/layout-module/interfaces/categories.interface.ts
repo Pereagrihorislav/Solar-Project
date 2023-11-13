@@ -10,3 +10,8 @@ export interface Category {
     parentId: string
     name: string
 }
+
+export interface CategoryShort {
+    id: string
+    name: string
+}

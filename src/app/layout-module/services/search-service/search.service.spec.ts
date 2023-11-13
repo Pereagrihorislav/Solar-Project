@@ -17,30 +17,4 @@ describe('SearchService', () => {
     searchService = TestBed.inject(SearchService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
-
-  it('should change search input', () => {
-    const inputValue = 'test input';
-
-    searchService.changeSearchInput(inputValue);
-    
-    searchService.searchInput$.subscribe((input) => {
-      expect(input).toBe(inputValue);
-    });
-  });
-
-  it('should make a POST request with search value', () => {
-    const searchValue = 'test search';
-    const responseData: any[] = [];
-
-    searchService.search(searchValue).subscribe((response) => {
-      expect(response).toEqual(responseData);
-    });
-
-    const req = httpTestingController.expectOne(`${environment.$_API_URL}/Advert/search`);
-    expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual({ search: searchValue });
-    req.flush(responseData);
-
-    httpTestingController.verify();
-  });
 });

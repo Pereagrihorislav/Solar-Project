@@ -1,4 +1,4 @@
-import { Component, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   FormBuilder, 
   UntypedFormGroup, 
@@ -10,7 +10,7 @@ import { CategoriesService } from 'src/app/layout-module/services/categories-ser
 import { OnInit } from '@angular/core';
 import { Category } from 'src/app/layout-module/interfaces/categories.interface';
 import { ProductService } from 'src/app/pages/services/product-service/product.service';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { ProductExt } from 'src/app/pages/interfaces/product.interface';
 import { Image } from 'src/app/pages/interfaces/image.interface';
 import { ImagesService } from 'src/app/pages/services/images-service/images.service';
@@ -23,27 +23,25 @@ import { Router } from '@angular/router';
 })
 
 export class EditFormComponent  implements OnInit, OnDestroy {
- 
   editForm!: UntypedFormGroup;
+  editableProduct!: ProductExt;
+
   categoriesList!: Array<Category>;
   firstLevelCategories!: Array<Category>;
   secondLevelCategories!:  Array<Category> ;
   thirdLevelCategories!: Array<Category>;
+
   images: Array<Image> = [];
   imagesFromServer: Array<Image> = [];
-  isEditing: boolean = false;
-  editableProduct!: ProductExt;
 
+  isEditing: boolean = false;
+  fileInputChanged: boolean = false;
+  
   getCategoriesSub$!: Subscription;
-  sendProductSub$!: Subscription;
   getImgSub$: Subscription | undefined;
-  deleteImgSub$: Subscription | undefined;
-  deleteProductSub$!: Subscription;
   editStatusSub$!: Subscription;
 
-  unsubscribe$ = new Subject<void>;
   
-
   pageTitle: string = 'Новое объявление';
   submitBtnTitle: string = 'Разместить объявление';
   
@@ -58,8 +56,12 @@ export class EditFormComponent  implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getCategoriesSub$ = this.categoriesService.getAllCategories().subscribe((response) => {
       this.categoriesList = response;
+
       this.firstLevelCategories = this.categoriesList.filter(category => category.parentId === this.categoriesService.getDefaultcategoryId()
       && category.name !== 'Anything' && category.name !== 'Default');
+      
+      /*It’s better to start uploading a file once you have all the categories; 
+      this is necessary to fill these fields with values ​​from the drop-down lists*/
 
       this.editStatusSub$ = this.productService.editStatus$.subscribe(response => {
         this.isEditing = response;
@@ -86,6 +88,10 @@ export class EditFormComponent  implements OnInit, OnDestroy {
       contactPhone: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(12), this.phoneNumberValidator()]],
       productPrice: ['', [Validators.required, Validators.maxLength(12), this.onlyNumValidator()]],
     })
+    this.editForm.get('photo')?.valueChanges.subscribe(() => {
+      this.fileInputChanged = true;
+    })
+
   }
   
   onFirstLevelCategoryChange(): void {
@@ -100,21 +106,6 @@ export class EditFormComponent  implements OnInit, OnDestroy {
     this.thirdLevelCategories = this.categoriesList.filter(category => category.parentId === selectedCategoryId);
     this.editForm.get('thirdLevelCategory')?.setValue(null);
   }
-
-  findGrandParent(categoryLevel3: Category): Array<Category> | null {
-    const categoryLevel2 = this.categoriesList.find(item => item.id === categoryLevel3.parentId);
-    if (categoryLevel2 && categoryLevel2.id === categoryLevel3.parentId) {
-      const categoryLevel1 = this.categoriesList.find(item => item.id === categoryLevel2.parentId 
-        && item.parentId === '00000000-0000-0000-0000-000000000000');
-      if (categoryLevel1) { 
-        return [categoryLevel1, categoryLevel2, categoryLevel3];
-      } else {
-        return [categoryLevel2, categoryLevel3]
-      }
-    } 
-    return null;
-  }
-
 
   onFileChange(event: any): void {
     if (event.target.files && event.target.files[0]) {
@@ -135,28 +126,6 @@ export class EditFormComponent  implements OnInit, OnDestroy {
 
   removeFile(index: number): void {
     this.images.splice(index, 1);
-  }
-
-  onDelete() {
-    if(this.imagesFromServer.length > 0) {
-      this.deleteImgSub$ = this.imagesService.deleteImagesFromProduct(this.imagesFromServer)?.subscribe();
-    }
-    console.log(this.editableProduct.id)
-    this.deleteProductSub$ = this.productService.deleteProductbyId(this.editableProduct.id)
-    .pipe(takeUntil(this.unsubscribe$))
-    .subscribe(() => {
-      this.router.navigate(['main/user-products']);
-      this.unsubscribe$.next();
-      this.unsubscribe$.complete();
-    });
-    
-  }
-
-  onReset(): void {
-    this.images = [];
-    this.imagesFromServer = [];
-    this.editForm.reset();
-    this.editProduct(this.editableProduct);
   }
 
   onSubmit(): void {
@@ -188,42 +157,27 @@ export class EditFormComponent  implements OnInit, OnDestroy {
       if (this.isEditing) { 
         //Update advert logic
         if(this.imagesFromServer.length > 0) { 
-
           //Before sending, you need to clear existing photos from server to avoid duplication
           //Moreover, updating the ad should begin only after deleting the photo
-          this.deleteImgSub$ = this.imagesService.deleteImagesFromProduct(this.imagesFromServer)?.subscribe(() => {
-            this.sendProductSub$ = this.productService.updateProductById(formData, this.editableProduct.id)
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(() => {
-              this.router.navigate(['main/user-products']);
-              this.unsubscribe$.next();
-              this.unsubscribe$.complete();
-            });
-          });
-          
+
+          this.imagesService.deleteImgsInBcgMode(this.imagesFromServer);
+          this.productService.updateInBcgMode(formData, this.editableProduct.id);
+          this.router.navigate(['main/user-products']);
+
         } else {
-          this.sendProductSub$ = this.productService.updateProductById(formData, this.editableProduct.id)
-          .pipe(takeUntil(this.unsubscribe$))
-          .subscribe(() => {
-            this.router.navigate(['main/user-products']);
-            this.unsubscribe$.next();
-            this.unsubscribe$.complete();
-          });
+          this.productService.updateInBcgMode(formData, this.editableProduct.id);
+          this.router.navigate(['main/user-products']);
         }
          
       } else { 
         //Create advert logic
-       this.sendProductSub$ = this.productService.createNewProduct(formData)
-       .pipe(takeUntil(this.unsubscribe$))
-       .subscribe(() => {
+        this.productService.createInBcgMode(formData);
         this.router.navigate(['main/user-products']);
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
-       });
       }
     }
   }
 
+  /*-------a pack of methods available when updating---------*/
   
   editProduct (editableProduct: ProductExt): void {
     const categoriesByLvl = this.findGrandParent(this.editableProduct.category);
@@ -273,6 +227,37 @@ export class EditFormComponent  implements OnInit, OnDestroy {
     })
   }
 
+  findGrandParent(categoryLevel3: Category): Array<Category> | null {
+    const categoryLevel2 = this.categoriesList.find(item => item.id === categoryLevel3.parentId);
+    if (categoryLevel2 && categoryLevel2.id === categoryLevel3.parentId) {
+      const categoryLevel1 = this.categoriesList.find(item => item.id === categoryLevel2.parentId 
+        && item.parentId === '00000000-0000-0000-0000-000000000000');
+      if (categoryLevel1) { 
+        return [categoryLevel1, categoryLevel2, categoryLevel3];
+      } else {
+        return [categoryLevel2, categoryLevel3]
+      }
+    } 
+    return null;
+  }
+
+  onDelete() {
+    if(this.imagesFromServer.length > 0) {
+      this.imagesService.deleteImgsInBcgMode(this.imagesFromServer);
+    }
+    this.productService.deleteInBcgMode(this.editableProduct.id)
+    this.router.navigate(['main/user-products']);
+  }
+
+  onReset(): void {
+    this.images = [];
+    this.imagesFromServer = [];
+    this.editForm.reset();
+    this.editProduct(this.editableProduct);
+  }
+
+/*-------------*/
+
   onlyNumValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       return !Number(control.value) ? {onlyNum: {value: 'Недопустимое значение'}} : null;
@@ -296,10 +281,7 @@ export class EditFormComponent  implements OnInit, OnDestroy {
     }
     this.getCategoriesSub$.unsubscribe();
     this.editStatusSub$.unsubscribe();
-    //this.sendProductSub$?.unsubscribe();
     this.getImgSub$?.unsubscribe();
-    this.deleteImgSub$?.unsubscribe();
-    this.deleteProductSub$?.unsubscribe();
   }
 }
 

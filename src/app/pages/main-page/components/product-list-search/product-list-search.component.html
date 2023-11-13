@@ -1,4 +1,9 @@
-<h2>Результаты поиска по запросу "{{ currentSearchInput }}":</h2>
+<h2 *ngIf="currentSearchInput; else elseBlock">
+    Результаты поиска по запросу "{{ currentSearchInput.name }}":
+</h2>
+<ng-template class="app-product-list-search__header" #elseBlock>
+    <h2>В выбраной категории</h2>
+</ng-template>
 <span class="result-count">Найдено {{ products?.length }} объявлений</span>
 <div class="app-product-list-search__container">
     <div class="app-product-list__search">

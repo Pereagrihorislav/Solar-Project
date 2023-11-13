@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../../interfaces/product.interface';
 import { SearchService } from 'src/app/layout-module/services/search-service/search.service';
 import { Subscription } from 'rxjs';
+import { CategoryShort } from 'src/app/layout-module/interfaces/categories.interface';
 
 @Component({
   selector: 'app-product-list',
@@ -16,11 +17,13 @@ export class ProductListComponent implements OnInit, OnDestroy{
   itemsPerPage = 50; // количество элементов на странице
   isLoading = false; // флаг, чтобы избежать многократных запросов
   searchSub$!: Subscription;
+  searchObj: CategoryShort = {id: '', name: ''}
+
 
   constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {
-    this.searchSub$ = this.searchService.search('').subscribe(response => {
+    this.searchSub$ = this.searchService.search(this.searchObj).subscribe(response => {
       this.products = response;
       if (response) {
         this.loadVisibleProducts();

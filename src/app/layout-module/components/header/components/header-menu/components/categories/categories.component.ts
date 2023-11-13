@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoriesService } from '../../../../../../services/categories-service/categories.service';
 import { SearchService } from '../../../../../../services/search-service/search.service';
-import { Category } from '../../../../../../interfaces/categories.interface';
+import { Category, CategoryShort } from '../../../../../../interfaces/categories.interface';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -19,6 +19,7 @@ export class CategoriesComponent implements OnInit, OnDestroy{
   menuIsVisible: boolean = false;
   categoryToSearchId: string = '';
   getCategoriesSubs$!: Subscription;
+  currentCategory: CategoryShort = {id: '', name: ''}
 
   constructor(private categoriesService: CategoriesService, private searchService: SearchService, private router: Router) {}
   
@@ -42,8 +43,10 @@ export class CategoriesComponent implements OnInit, OnDestroy{
 
   categorySearch(currentCategoryId: string, currentCategoryName: string): void {
     if(currentCategoryId) {
-      this.searchService.changeSearchCategory(currentCategoryId, currentCategoryName);
-      this.searchService.changeSearchInput(currentCategoryName);
+      this.currentCategory.id = currentCategoryId;
+      this.currentCategory.name = currentCategoryName
+      console.log(this.currentCategory)
+      this.searchService.changeSearchInput(this.currentCategory);
       this.loadMenu();
       if (this.router.url !== 'main/search') {
         this.router.navigate(['main/search']);

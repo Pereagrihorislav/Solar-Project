@@ -17,18 +17,21 @@ import { AuthService } from '../../services/auth-service/auth.service';
 export class ProductPageComponent implements OnInit {
   product!: ProductExt;
   isEditable: boolean = false;
+ 
   productSub$!: Subscription;
   productIdSub$!: Subscription;
   getUserSub$!: Subscription;
   authSub$!: Subscription;
   openModalSub$!: Subscription;
+  
 
   constructor (private productService: ProductService, 
     private modalService: ModalService, 
     private userService: UserService, 
     private authService: AuthService, 
     private router: Router, 
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute) {
+    }
 
   ngOnInit(): void {
     this.productSub$ = this.route.paramMap.subscribe(params => {
@@ -37,7 +40,6 @@ export class ProductPageComponent implements OnInit {
         this.productIdSub$ = this.productService.getProductById(productId).subscribe((response) => {
           this.productService.currentLoadedProduct = response;
           this.product = Object.assign({}, this.productService.currentLoadedProduct);
-          console.log(this.productService.currentLoadedProduct)
         })
       }
     });
