@@ -22,12 +22,19 @@ export class ProductListUsersComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getUserSub$ = this.userService.getCurrentUser().subscribe((response) => {
       this.userProducts = response.adverts;
+      this.userProducts = this.userProducts.sort(this.compareDates);
     });
   }
 
   openCreationForm(){
     this.productService.changeEditStatus(false);
     this.router.navigate(['/edit/product']);
+  }
+
+  compareDates(a: Product, b: Product): number {
+    const dateA = new Date(a.createdAt);
+    const dateB = new Date(b.createdAt);
+    return dateB.getTime() - dateA.getTime();
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { User } from 'src/app/pages/interfaces/user.interface';
 import { UserService } from 'src/app/pages/services/user-service/user.service';
@@ -6,17 +6,25 @@ import { SignUp } from 'src/app/pages/interfaces/auth.interfaces';
 import { ModalService } from 'src/app/pages/modal-popups/services/modal.service';
 import { AuthService } from 'src/app/pages/services/auth-service/auth.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-settings-form',
   templateUrl: './settings-form.component.html',
   styleUrls: ['./settings-form.component.scss']
 })
-export class SettingsFormComponent implements OnInit{
+export class SettingsFormComponent implements OnInit, OnDestroy{
   @ViewChild('successModalTemplate') successModalTemplate!: TemplateRef<any>;
+  @ViewChild('deleteModalTemplate') deleteModalTemplate!: TemplateRef<any>;
+  
   userForm!: UntypedFormGroup;
   updateUserData: SignUp = {name: '', login: '', password: ''};
   currentUser!: User;
+
+  getUserSub$!: Subscription;
+  updateUserSub$!: Subscription;
+  deleteUserSub$!: Subscription;
+  modalSub$!: Subscription;
 
   constructor(private formBuilder: FormBuilder, 
     private userService: UserService, 
@@ -28,9 +36,8 @@ export class SettingsFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe(response => {
+    this.getUserSub$ = this.userService.getCurrentUser().subscribe(response => {
       this.currentUser = response;
-      console.log(response);
       this.userForm.get('userName')?.setValue(this.currentUser.name);
     })
   }
@@ -52,10 +59,10 @@ export class SettingsFormComponent implements OnInit{
       formData.append('login', this.userForm.get('login')?.value) ;
       formData.append('password', this.userForm.get('confirmPassword')?.value) ;
 
-      this.userService.updateCurrentUser(formData, this.currentUser.id).subscribe(
+      this.updateUserSub$ = this.userService.updateCurrentUser(formData, this.currentUser.id).subscribe(
         response => {
           this.userService.getCurrentUserName().subscribe();
-          this.openModal(this.successModalTemplate)
+          this.openModal(this.successModalTemplate);
           console.log('User updated successfully:', response);
         },
         error => {
@@ -67,10 +74,10 @@ export class SettingsFormComponent implements OnInit{
 
   deleteUser(id: string){
     if(this.currentUser){
-      this.userService.deleteCurrentUser(id).subscribe((respoonse) => {
+      this.deleteUserSub$ = this.userService.deleteCurrentUser(id).subscribe((respoonse) => {
         if(respoonse){
-          this.router.navigate(['/main']);
           this.authService.SignOut();
+          this.router.navigate(['/main']);
         }
       })
     }
@@ -78,13 +85,12 @@ export class SettingsFormComponent implements OnInit{
   }
 
   openModal(modalTemplate: TemplateRef<any>) {
-    this.modalService
+    this.modalSub$ = this.modalService
       .open(modalTemplate, { size: 'lg', title: 'Сообщение:' })
       .subscribe((action) => {
         console.log('modalAction', action);
       });
   }
-
 
   passwordMatchValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -97,6 +103,13 @@ export class SettingsFormComponent implements OnInit{
         return { passwordMatch: true }; 
       }
     };
+  }
+
+  ngOnDestroy(): void {
+    this.getUserSub$?.unsubscribe();
+    this.updateUserSub$?.unsubscribe();
+    this.deleteUserSub$?.unsubscribe();
+    this.modalSub$?.unsubscribe();
   }
 
 }

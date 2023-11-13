@@ -3,7 +3,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    width: 100%;
     font-family: "Montserrat", sans-serif;
+
 
     .product-page__product-title {
         margin-bottom: 16px;
@@ -40,7 +42,7 @@
                 background-color: transparent;
                 border: 1px solid #4C58C8;
                 border-radius: 4px;
-        
+               
                 &:hover {
                     color: #59D2BD;
                     border:  1px solid #59D2BD;
@@ -87,6 +89,15 @@
                 background-color: #4C58C8;
                 border: none;
                 border-radius: 4px;
+
+                .image {
+                    height: 18px;
+                    
+                }
+
+                span {
+                    margin-left: 12px;
+                }
         
                 &:hover {
                     background-color: #7480ED;

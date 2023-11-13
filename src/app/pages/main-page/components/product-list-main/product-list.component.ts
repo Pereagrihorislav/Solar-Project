@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../../interfaces/product.interface';
 import { SearchService } from 'src/app/layout-module/services/search-service/search.service';
 import { Subscription } from 'rxjs';
+import { format, parseISO } from 'date-fns';
 import { CategoryShort } from 'src/app/layout-module/interfaces/categories.interface';
 
 @Component({
@@ -11,36 +12,24 @@ import { CategoryShort } from 'src/app/layout-module/interfaces/categories.inter
 })
 
 export class ProductListComponent implements OnInit, OnDestroy{
+
   products: Array<Product> | undefined;
-  visibleProducts: Array<Product> | undefined;
-  currentPage = 1; // текущая страница данных
-  itemsPerPage = 50; // количество элементов на странице
-  isLoading = false; // флаг, чтобы избежать многократных запросов
   searchSub$!: Subscription;
   searchObj: CategoryShort = {id: '', name: ''}
-
-
+  
   constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {
     this.searchSub$ = this.searchService.search(this.searchObj).subscribe(response => {
       this.products = response;
-      if (response) {
-        this.loadVisibleProducts();
-      }
+      this.products = this.products.sort(this.compareDates);
     })
   }
 
-  loadVisibleProducts() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.visibleProducts = this.products?.slice(startIndex, endIndex);
-  }
-
-  onPageChange() {
-    console.log('SCROLL')
-    this.currentPage++;
-    this.loadVisibleProducts();
+  compareDates(a: Product, b: Product): number {
+    const dateA = new Date(a.createdAt);
+    const dateB = new Date(b.createdAt);
+    return dateB.getTime() - dateA.getTime();
   }
 
   ngOnDestroy(): void {

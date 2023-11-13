@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Injectable } from "@angular/core"; 
+import { Injectable, inject } from "@angular/core"; 
+import { Router } from "@angular/router";
 import { EMPTY, Observable, catchError, throwError } from "rxjs";
 
 @Injectable()
@@ -18,6 +19,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                                 break;
                             case 401:  //Unautorized
                                 console.log(error.statusText);
+                                break;
+                            case 404:  //not found
+                                console.log(error.statusText);
+                                inject(Router).navigate(['/not-found'])
                                 break;
                             case 500:  //Server Issues
                                 console.log(error.statusText);

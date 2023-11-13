@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/pages/services/user-service/user.service';
 import { Subscription } from 'rxjs';
 
+
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -36,7 +37,8 @@ export class SignInComponent implements OnInit, OnDestroy {
   signIn(): void {
     if(this.signInForm.valid){
       this.signInSubs$ = this.authService.postToSignIn(this.signInForm.value).subscribe(() => {
-        this.getUserSub$ = this.userService.getCurrentUserName().subscribe();
+        this.userService.getCurrentUserName().subscribe();
+        this.userService.getCurrentUserId().subscribe();
         this.router.navigate(['/main']);
         },
         (error) => {
@@ -48,6 +50,5 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.signInSubs$?.unsubscribe();
-    //this.getUserSub$?.unsubscribe(); //This subscription must remain active to display username in real time
   }
 }

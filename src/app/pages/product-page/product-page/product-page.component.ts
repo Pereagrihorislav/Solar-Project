@@ -11,19 +11,20 @@ import { AuthService } from '../../services/auth-service/auth.service';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
-  styleUrls: ['./product-page.component.scss']
+  styleUrls: ['./product-page.component.scss', './product-page.component-adaptive.scss']
 })
 
 export class ProductPageComponent implements OnInit {
   product!: ProductExt;
   isEditable: boolean = false;
+  currentUserId!: string;
+  productId!: string | null;
  
   productSub$!: Subscription;
   productIdSub$!: Subscription;
   getUserSub$!: Subscription;
   authSub$!: Subscription;
   openModalSub$!: Subscription;
-  
 
   constructor (private productService: ProductService, 
     private modalService: ModalService, 
@@ -35,26 +36,30 @@ export class ProductPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.productSub$ = this.route.paramMap.subscribe(params => {
-      const productId = params.get('id'); 
-      if (productId) {
-        this.productIdSub$ = this.productService.getProductById(productId).subscribe((response) => {
+      this.productId = params.get('id'); 
+      if (this.productId) {
+        this.productIdSub$ = this.productService.getProductById(this.productId).subscribe((response) => {
           this.productService.currentLoadedProduct = response;
           this.product = Object.assign({}, this.productService.currentLoadedProduct);
+
+          this.authSub$ = this.authService.authStatus$.subscribe(isAuth => {
+            const storedUserId = localStorage.getItem('user-id');
+            this.currentUserId = storedUserId ? storedUserId.replace(/"/g, '') : '';
+            if(isAuth) {
+              this.getUserSub$ = this.userService.currUserId$.subscribe(response => {
+                if(response && response == this.product?.user.id) {
+                  this.isEditable = true;
+                } else if (this.currentUserId == this.product?.user.id){
+                  this.isEditable = true;
+                } 
+              });
+            }
+          });
         })
       }
     });
 
-    this.authSub$ = this.authService.authStatus$.subscribe(response => {
-      console.log('auth ' + response);
-      if(response) {
-        this.getUserSub$ = this.userService.getCurrentUser().subscribe(response => {
-          if(response.id == this.product?.user.id) {
-            this.isEditable = true;
-            console.log('this advert is editable: ' + this.isEditable);
-          }
-        })
-      }
-    })
+    
   }
 
   editProduct(){

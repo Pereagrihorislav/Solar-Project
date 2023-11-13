@@ -1,0 +1,21 @@
+@media (max-width: 1209px) {
+    .gallery-and-description {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        .description {
+            width: 100% !important;
+            margin-top: 24px;
+            margin-left: 0px  !important;
+            margin-right: 0px !important;
+            
+        }
+    }
+
+    .gallery {
+        align-items: center;
+        width: 100%;
+    }
+    
+}

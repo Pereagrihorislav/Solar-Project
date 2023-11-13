@@ -34,6 +34,7 @@
         .product-card__image img {
             transition: all 0.3s ease-in-out;
         }
+       
 
         .product-card__image {
             display:block;
@@ -44,6 +45,18 @@
             overflow: hidden;
             border-radius: 8px 8px 0 0;
             transition-timing-function: ease-in-out 0.3s;
+
+            .loading {
+                position:absolute;
+                left: 0;
+                top: 0;
+                height: 272px;
+                width: 272px;
+                overflow: hidden;
+                border-radius: 8px 8px 0 0;
+                background: linear-gradient(180deg, rgba(41,50,139,1) 5%, rgba(76,88,200,1) 35%, rgba(89,210,189,1) 100%);
+                transition-timing-function: ease-in-out 0.3s;
+            }
 
             &::after {
             content: '';

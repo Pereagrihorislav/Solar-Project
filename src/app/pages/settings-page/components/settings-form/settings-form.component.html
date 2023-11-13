@@ -26,7 +26,7 @@
         <div  class="settings-form__change-password change-password _subform">
             <h3 class="settings-form__header">Смена Пароля</h3>
             <p class="settings-form__control-name control-name">Новый пароль<sub>*</sub></p>
-            <input class="change-password__input _form-text" type="text" id="Password"  formControlName="password" 
+            <input class="change-password__input _form-text" type="password" id="Password"  formControlName="password" 
             placeholder="Введите новый пароль">
             <div *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].touched || userForm.controls['password'].dirty)">
                 <small class="err-message" *ngIf="userForm.controls['password'].errors?.['required']">Обязательное поле</small>
@@ -35,7 +35,7 @@
             </div>
 
             <p class="settings-form__control-name control-name">Подтвердите пароль<sub>*</sub></p>
-            <input class="change-password-confirm__input _form-text" type="text" id="ConfirmPassword"  formControlName="confirmPassword" 
+            <input class="change-password-confirm__input _form-text" type="password" id="ConfirmPassword"  formControlName="confirmPassword" 
             placeholder="Введите пароль повторно">
             <div *ngIf="userForm.controls['confirmPassword'].invalid && (userForm.controls['confirmPassword'].touched || userForm.controls['confirmPassword'].dirty)">
                 <small class="err-message" *ngIf="userForm.controls['confirmPassword'].errors?.['required']">Обязательное поле</small>
@@ -56,5 +56,5 @@
 
 <ng-template #deleteModalTemplate>
     <div class="modal__text">Вы действительно хотите безвозвратно удалить учетную запись? Мы расстроимся.</div>
-    <button class="modal__delete-button _button">Удалить</button>
+    <button (click)="deleteUser(currentUser.id)" class="modal__delete-button _button">Удалить</button>
 </ng-template>

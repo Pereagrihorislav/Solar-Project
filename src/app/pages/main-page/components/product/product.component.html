@@ -1,7 +1,9 @@
-<article class="product-list__product-card product-card">
+<article class="product-list__product-card product-card loading" >
     <a (click)="openProductPage(product.id)" class="product-card__body">
         <div class="product-card__image _ibg">
-            <img [src]= "imageSrc(product.imagesIds[0])" alt="product photo">
+            <div class="loading" id="ImgCard">
+                <img loading="lazy" class="loading-image" [src]= "imageSrc(product.imagesIds[0])" alt="product photo" id="ProdImg">
+            </div>
         </div>
         <div class="product-card__description">
             <h4 class="product-card__name">{{ product.name }}</h4>

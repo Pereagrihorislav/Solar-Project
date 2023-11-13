@@ -44,14 +44,15 @@ export class AuthService {
     return !!this.token;
   }
 
-  isAuthenticatedStatus(): Observable<boolean> {
+  /*isAuthenticatedStatus(): Observable<boolean> {
     return of (!!this.token);
-  }
+  }*/
 
   SignOut(): void {
     this.setToken('');
     localStorage.removeItem('auth-token');
     localStorage.removeItem('user-name');
+    localStorage.removeItem('user-id')
     //localStorage.clear();
   }
 }

@@ -1,0 +1,28 @@
+.loading-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: -48px;
+    right: 0;
+    background: #fff;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner{
+    margin:auto;
+    height: 120px;
+    width: 120px;
+    border: 6px solid;
+    border-color: #4C58C8 transparent #4C58C8 transparent;
+    border-radius: 50%;
+    animation: spin 1.3s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }

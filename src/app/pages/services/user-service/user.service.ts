@@ -11,15 +11,28 @@ import { environment } from 'src/environments/environment.prod';
 export class UserService {
   private currUsernameSource$ = new BehaviorSubject<string>('');
   currUsername$ = this.currUsernameSource$.asObservable();
+
+  private currUserIdSource$ = new BehaviorSubject<string>('');
+  currUserId$ = this.currUserIdSource$.asObservable();
   
   constructor(private httpClient: HttpClient) {}
 
-  getCurrentUserName(): Observable<User>{
+  getCurrentUserName(): Observable<User> {
     return this.httpClient.get<User>(`${environment.$_API_URL}/Users/current`).pipe(
       switchMap((user) => {
       const name = user.name || '';
       localStorage.setItem('user-name', JSON.stringify(name));
       this.currUsernameSource$.next(name);
+      return of(user);
+    }));
+  }
+
+  getCurrentUserId(): Observable<User> {
+    return this.httpClient.get<User>(`${environment.$_API_URL}/Users/current`).pipe(
+      switchMap((user) => {
+      const id = user.id || '';
+      localStorage.setItem('user-id', JSON.stringify(id));
+      this.currUserIdSource$.next(id);
       return of(user);
     }));
   }

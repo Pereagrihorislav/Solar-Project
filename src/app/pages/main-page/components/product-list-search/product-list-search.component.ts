@@ -23,6 +23,7 @@ export class ProductListSearchComponent implements OnInit, OnDestroy {
   displaySearchResults(): void {
     this.searchByInputSub$ = this.searchService.search(this.currentSearchInput).subscribe((response) => {
       this.products = response;
+      this.products = this.products.sort(this.compareDates);
     });
   }
 
@@ -31,7 +32,6 @@ export class ProductListSearchComponent implements OnInit, OnDestroy {
       this.currentSearchInput = searchFormInput;
       const storedCategory = localStorage.getItem('last-search-input');
       this.currentSearchInput = storedCategory ? JSON.parse(storedCategory) : '';
-  
     });
 
    this.refreshBySearchSub$ = this.searchService.searchInput$
@@ -41,6 +41,12 @@ export class ProductListSearchComponent implements OnInit, OnDestroy {
       return EMPTY;
     })
    ).subscribe();
+  }
+
+  compareDates(a: Product, b: Product): number {
+    const dateA = new Date(a.createdAt);
+    const dateB = new Date(b.createdAt);
+    return dateB.getTime() - dateA.getTime();
   }
 
   ngOnDestroy(): void {

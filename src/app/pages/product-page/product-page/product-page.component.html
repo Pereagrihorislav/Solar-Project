@@ -4,7 +4,10 @@
         <app-gallery-slider [product]="product"></app-gallery-slider>
         <div class="gallery-and-description__description description">
             <h3 class="description__price">{{ product.cost }} ₽</h3>
-            <button (click)="openModal(contactsModalTemplate)" class="description__show-contacts-button _button">Показать номер телефона</button>
+            <button (click)="openModal(contactsModalTemplate)" class="description__show-contacts-button _button">
+                <img class="image" src="../../../../assets/img/icons/phone-icon.svg" alt="" height="18px">
+                <span>Показать номер телефона</span>
+            </button>
             <div class="description__address address">
                 <h4 class="address__title _title">Адрес</h4>
                 <p class="address__text _text">{{ product.location }}</p>

@@ -6,7 +6,7 @@ import { ImagesService } from 'src/app/pages/services/images-service/images.serv
 @Component({
   selector: 'app-gallery-slider',
   templateUrl: './gallery-slider.component.html',
-  styleUrls: ['./gallery-slider.component.scss']
+  styleUrls: ['./gallery-slider.component.scss', '../../product-page.component-adaptive.scss']
 })
 export class GallerySliderComponent {
   @Input() product!: ProductExt;

@@ -11,7 +11,7 @@
             <small class="err-message" *ngIf="signUpForm.controls['name'].errors?.['required']">Обязательное поле</small>
             <small class="err-message" *ngIf="signUpForm.controls['name'].errors?.['maxlength']">Максимальное количество символов: 24</small>
         </div>
-        <input class="sign-form__input" type="text" id="Password" formControlName="password" placeholder="Пароль" autocomplete="off" autocomplete="no">
+        <input class="sign-form__input" type="password" id="Password" formControlName="password" placeholder="Пароль" autocomplete="off" autocomplete="no">
         <div *ngIf="signUpForm.controls['password'].invalid && (signUpForm.controls['password'].touched || signUpForm.controls['password'].dirty)">
             <small class="err-message" *ngIf="signUpForm.controls['password'].errors?.['required']">Обязательное поле</small>
             <small class="err-message" *ngIf="signUpForm.controls['password'].errors?.['minlength']">Минимальное количество символов: 8</small>

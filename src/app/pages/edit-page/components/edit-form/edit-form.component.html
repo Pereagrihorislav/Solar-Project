@@ -64,7 +64,10 @@
             <input class="add-photos__add" (change)="onFileChange($event)" type="file" id="Photo" multiple="multiple" accept="image/png ,image/jpeg, ,image/heic" 
             formControlName="photo">
             <div class="label-and-inscription">
-                <label for="Photo">Выберите изображение</label>
+                <label for="Photo">
+                    <img src="../../../../../assets/img/icons/gallery-icon.svg" alt="" height="12px">
+                    <span>Выберите изображение</span>
+                </label>
                 <span class="inscription">От 1 до 10 картинок в формате jpg, png или heic<sub>*</sub></span>
             </div>
             
